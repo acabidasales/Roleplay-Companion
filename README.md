@@ -19,3 +19,8 @@
 * Git
 * Composer
 * Npm
+
+
+### Recursos utilizados
+
+[Boxicons](https://boxicons.com/)
