@@ -24,7 +24,7 @@ function App() {
         {/* Navbar */}
         <div className='bg-zinc-800 sticky top-0 w-full max-h-16'>
             <ul className="navbar-nav flex">
-              <Link to="/inicio" className="nav-item active relative group flex">
+              <Link to="/" className="nav-item active relative group flex">
                 <a className="nav-link m-4">
                   <div className='w-full h-full flex justify-center items-center'>
                     <img className="max-w-10 inline-block max-h-4 mr-2" src='/home-icon.png'/>
@@ -35,7 +35,7 @@ function App() {
                 <span className="absolute bottom-0 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
               </Link>
 
-              <li to="/inicio2" className="nav-item relative group flex">
+              <Link to="/" className="nav-item relative group flex">
                 <a className="nav-link m-4">
                   <div className='w-full h-full flex justify-center items-center'>
                     <box-icon name='food-menu' color='#ffffff' ></box-icon>
@@ -44,10 +44,10 @@ function App() {
                 </a>
                 <span className="absolute bottom-0 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                 <span className="absolute bottom-0 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-              </li>
+              </Link>
 
-              <li className="nav-item relative group flex" href='/'>
-                <a className="nav-link m-4" href='/'>
+              <Link className="nav-item relative group flex" href='/'>
+                <a className="nav-link m-4">
                   <div className='w-full h-full flex justify-center items-center'>
                     <box-icon name='diamond' color='#ffffff' ></box-icon>
                     <p className='inline-block align-middle text-lg group-hover:text-sky-500 ml-1'>Campañas</p>
@@ -55,7 +55,7 @@ function App() {
                 </a>
                 <span className="absolute bottom-0 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                 <span className="absolute bottom-0 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-              </li>
+              </Link>
             </ul>
         </div>
 

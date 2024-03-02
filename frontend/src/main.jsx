@@ -11,12 +11,17 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/inicio",
+        path: "/",
         element: <Inicio />,
       },
     ],
   },
 ]);
+
+const prueba = fetch('http://127.0.0.1:8000/api/personajes')
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
