@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-export default function Inicio() {
+export default function Personajes() {
     return (
         <div className='max-w-screen-md mx-auto'>
-            <h2 className='text-xl font-bold mt-4 mb-4'>Inicio</h2>
+            <h2 className='text-xl font-bold mt-4 mb-4'>Inicio2</h2>
             <div className='max-w-screen-md mx-auto bg-zinc-800'>
                 <div className='relative max-w-screen-md'>
                     <img className='absolute w-1/3 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' src="/logo-texto-blanco.png"/>
