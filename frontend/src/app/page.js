@@ -1,12 +1,8 @@
-import { useState } from 'react'
-import '../App.css'
-import '../output.css'
-import 'boxicons'
+import Image from "next/image";
 
-function Inicio() {
+export default function Inicio() {
   return (
-    <>
-      <div className='max-w-screen-md mx-auto'>
+    <div className='max-w-screen-md mx-auto'>
         <h2 className='text-xl font-bold mt-4 mb-4'>Inicio</h2>
         <div className='max-w-screen-md mx-auto bg-zinc-800'>
             <div className='relative max-w-screen-md'>
@@ -26,8 +22,5 @@ function Inicio() {
          </div>
         </div>
       </div>
-    </>
-  )
+  );
 }
-
-export default Inicio

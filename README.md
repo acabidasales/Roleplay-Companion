@@ -2,7 +2,7 @@
 
 ### Frontend
 
-* [Vite](https://vitejs.dev) - Herramienta de construcción rápida para proyectos web basada en react.
+* [Next.js](https://nextjs.org/) - Marco de desarrollo web de React que permite crear aplicaciones web y sitios estáticos de forma eficiente y escalable.
 * [Bootstrap 4](https://getbootstrap.com) - Framework CSS para crear interfaces responsive
 * [Tailwindcss](https://tailwindcss.com/) - Framework CSS de bajo nivel para personalizar diseños directamente en HTML
 
