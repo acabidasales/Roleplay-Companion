@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AlineamientoController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CampanaController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\CompetenciaEquipamientoController;
@@ -30,11 +31,13 @@ use App\Http\Controllers\UserController;
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 
+Route::get('/user', [AuthController::class, 'user']);
+
 // Rutas protegidas
 /* Route::middleware('auth:api')->group(function () { */
-    Route::get('/user', function (Request $request) {
+    /* Route::get('/user', function (Request $request) {
         return $request->user();
-    });
+    }); */
 
     Route::apiResource('/usuarios', UserController::class);
 

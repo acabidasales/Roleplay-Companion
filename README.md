@@ -3,6 +3,7 @@
 ### Frontend
 
 * [Next.js](https://nextjs.org/) - Marco de desarrollo web de React que permite crear aplicaciones web y sitios estáticos de forma eficiente y escalable.
+* [Next-Auth](https://next-auth.js.org/) - Gestor de login
 * [Bootstrap 4](https://getbootstrap.com) - Framework CSS para crear interfaces responsive
 * [Tailwindcss](https://tailwindcss.com/) - Framework CSS de bajo nivel para personalizar diseños directamente en HTML
 
@@ -24,3 +25,4 @@
 ### Recursos utilizados
 
 [Boxicons](https://boxicons.com/)
+[JWT-auth](https://github.com/tymondesigns/jwt-auth)
