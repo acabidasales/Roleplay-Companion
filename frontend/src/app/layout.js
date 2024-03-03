@@ -5,8 +5,6 @@ import 'boxicons/css/boxicons.min.css'
 import Top_navbar from "./components/top-navbar";
 import Navbar from "./components/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata = {
   title: "Roleplay Companion",
   description: "Tu acompañante de rol",

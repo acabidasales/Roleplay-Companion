@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function Inicio() {
     return (
-        <div className='max-w-screen-md mx-auto'>
-            <h2 className='text-xl font-bold mt-4 mb-4'>Inicio</h2>
-            <div className='max-w-screen-md mx-auto bg-zinc-800'>
+        <div className='max-w-screen-md mx-auto bg-zinc-800 rounded'>
+            <h2 className='text-xl font-bold mt-4 mb-4 ml-4 pt-2'>Inicio</h2>
+            <div className='max-w-screen-md mx-auto'>
                 <div className='relative max-w-screen-md'>
                     <img className='absolute w-1/3 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' src="/logo-texto-blanco.png"/>
                     <div className='bg-black bg-opacity-0'>
