@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AlineamientoController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CampanaController;
+use App\Http\Controllers\CampañaController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\CompetenciaEquipamientoController;
 use App\Http\Controllers\CompetenciaHabilidadesController;
@@ -27,11 +27,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Rutas de autenticación
-Route::post('/login', [UserController::class, 'login']);
-Route::post('/register', [UserController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/user', [AuthController::class, 'user']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', [AuthController::class, 'user']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
 
 // Rutas protegidas
 /* Route::middleware('auth:api')->group(function () { */
@@ -45,7 +48,7 @@ Route::get('/user', [AuthController::class, 'user']);
 
     Route::apiResource('/alineamientos', AlineamientoController::class)->only(['index', 'show']);
 
-    Route::apiResource('/campanas', CampanaController::class)->only(['index', 'show']);
+    Route::apiResource('/campanas', CampañaController::class)->only(['index', 'show']);
 
     Route::apiResource('/clases', ClaseController::class)->only(['index', 'show']);
 
@@ -60,6 +63,4 @@ Route::get('/user', [AuthController::class, 'user']);
     Route::apiResource('/transfondos', TransfondoController::class)->only(['index', 'show']);
 
     Route::apiResource('/virtudes-razas', VirtudRazaController::class)->only(['index', 'show']);
-
-    Route::post('/logout', [UserController::class, 'logout']);
 /* }); */
