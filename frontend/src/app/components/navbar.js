@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <div className='bg-zinc-800 sticky top-0 w-full max-h-16'>
         <ul className="navbar-nav flex">
-        <Link href="/" className="nav-item active relative group flex">
+        <Link id="0" href="/" className="nav-item active relative group flex">
             <div className="nav-link m-4">
             <div className='w-full h-full flex justify-center items-center'>
                 <img className="max-w-10 inline-block max-h-5 mr-2" src='/home-icon.png'/>
@@ -17,7 +17,7 @@ export default function Navbar() {
             <span className="absolute bottom-0 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
         </Link>
 
-        <Link href="/personajes" className="nav-item relative group flex">
+        <Link id="1" href="/personajes" className="nav-item relative group flex">
             <div className="nav-link m-4">
             <div className='w-full h-full flex justify-center items-center'>
                 <i className='bx bx-food-menu bx-sm'></i>
@@ -28,7 +28,7 @@ export default function Navbar() {
             <span className="absolute bottom-0 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
         </Link>
 
-        <Link href="/campañas" className="nav-item relative group flex">
+        <Link id="2" href="/campañas" className="nav-item relative group flex">
             <div className="nav-link m-4">
             <div className='w-full h-full flex justify-center items-center'>
                 <i className="bx bx-diamond bx-sm"></i>
