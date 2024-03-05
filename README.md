@@ -15,7 +15,7 @@
 
 ### Prerequisitos
 
-* PHP 8.0.13
+* PHP 8.3.3
 * Mysql
 * Git
 * Composer
