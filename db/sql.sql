@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 05-03-2024 a las 18:39:55
+-- Tiempo de generación: 05-03-2024 a las 23:15:10
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -58,7 +58,7 @@ CREATE TABLE `campañas` (
   `nombre` varchar(255) DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
-  `propietario` varchar(255) DEFAULT NULL
+  `propietario` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -428,7 +428,36 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (27, 'App\\Models\\User', 1, 'token', 'e8b6f6ffa5f433f86f8c6cac659d4d0d9f15acf30534447227d0ef8ba9c29337', '[\"*\"]', '2024-03-03 15:10:05', NULL, '2024-03-03 15:09:56', '2024-03-03 15:10:05'),
 (28, 'App\\Models\\User', 1, 'token', '747779b43e91cf1dd4a2cbf25da949cd6d00f124cf6bdfe88107b5bb7e31fd1b', '[\"*\"]', '2024-03-03 15:14:24', NULL, '2024-03-03 15:10:12', '2024-03-03 15:14:24'),
 (29, 'App\\Models\\User', 1, 'token', '4393c4c78b27ad230821d16d0d8c47de4dedd1a3d566b0aea0c05a0d197e2a1b', '[\"*\"]', '2024-03-03 18:34:14', NULL, '2024-03-03 18:34:06', '2024-03-03 18:34:14'),
-(30, 'App\\Models\\User', 1, 'token', '0e08eb3838b0f1dee8f5873ed66493cd23013b6faa6af621c624ef2212f93feb', '[\"*\"]', '2024-03-04 18:36:58', NULL, '2024-03-04 18:36:57', '2024-03-04 18:36:58');
+(30, 'App\\Models\\User', 1, 'token', '0e08eb3838b0f1dee8f5873ed66493cd23013b6faa6af621c624ef2212f93feb', '[\"*\"]', '2024-03-04 18:36:58', NULL, '2024-03-04 18:36:57', '2024-03-04 18:36:58'),
+(31, 'App\\Models\\User', 1, 'token', 'e202ae4b9cddaad96f31ddc655ce42b8e72c69bb16c3da07a3b82fb455e77cfb', '[\"*\"]', '2024-03-05 17:49:05', NULL, '2024-03-05 17:49:01', '2024-03-05 17:49:05'),
+(32, 'App\\Models\\User', 1, 'token', 'd9cd0174389d3ba5ce6225013aea54c70895473171ac858e7056423b6f69fa62', '[\"*\"]', NULL, NULL, '2024-03-05 18:32:01', '2024-03-05 18:32:01'),
+(33, 'App\\Models\\User', 1, 'token', '7161f0407891815f0f841ebbae5023d37f17faca56ebe5a050f7eb70564ab933', '[\"*\"]', NULL, NULL, '2024-03-05 18:33:55', '2024-03-05 18:33:55'),
+(34, 'App\\Models\\User', 3, 'token', '695b5ba4bf4e6660628ebdfd1e6ef0a5f04578d6f7d9271633e7dd98eb6dcff9', '[\"*\"]', NULL, NULL, '2024-03-05 18:34:10', '2024-03-05 18:34:10'),
+(35, 'App\\Models\\User', 1, 'token', '026d221792cd1acbf8fd42faff1e8fd482641d966c14a4fe7915067c19767333', '[\"*\"]', NULL, NULL, '2024-03-05 18:35:12', '2024-03-05 18:35:12'),
+(36, 'App\\Models\\User', 1, 'token', '666091fa2809917b8d4a31209ac7a57d468ecb88cd4afc7b3d351eed7b5d8b37', '[\"*\"]', NULL, NULL, '2024-03-05 18:35:32', '2024-03-05 18:35:32'),
+(37, 'App\\Models\\User', 3, 'token', '30316b629847c7aab597d36394e5a68b8c1f28144aca0009789256403983fb3b', '[\"*\"]', NULL, NULL, '2024-03-05 18:36:29', '2024-03-05 18:36:29'),
+(38, 'App\\Models\\User', 1, 'token', '0f39d031a4b99d73dc51a6c5665ead5b5c1cdd469c7136492398935a504d7329', '[\"*\"]', NULL, NULL, '2024-03-05 18:39:41', '2024-03-05 18:39:41'),
+(39, 'App\\Models\\User', 1, 'token', 'e72766978ca18ace18c452fd44e79b2e83e217c72dfe5a71cd525a14231f5bfb', '[\"*\"]', NULL, NULL, '2024-03-05 18:40:52', '2024-03-05 18:40:52'),
+(40, 'App\\Models\\User', 1, 'token', '6601187dba999b787267d8f5100d4e43b7b85b8466009368bd6b22fa72ff0fbb', '[\"*\"]', NULL, NULL, '2024-03-05 18:41:30', '2024-03-05 18:41:30'),
+(41, 'App\\Models\\User', 1, 'token', '6ae8f1bccaaeb39c43e970d6932a896ce106efeab8fc51cf84ffa151193e4854', '[\"*\"]', NULL, NULL, '2024-03-05 18:42:40', '2024-03-05 18:42:40'),
+(42, 'App\\Models\\User', 1, 'token', '724edbff5734666f7e99001256f6070983803c4251b1c71b8ea1e0909d747d39', '[\"*\"]', NULL, NULL, '2024-03-05 18:45:41', '2024-03-05 18:45:41'),
+(43, 'App\\Models\\User', 1, 'token', 'f9a6eee612f17ea928b69bc16d21d9139c3fcbad7216cfad97d344f62f68ccdc', '[\"*\"]', NULL, NULL, '2024-03-05 18:46:28', '2024-03-05 18:46:28'),
+(44, 'App\\Models\\User', 1, 'token', '188305aafbff46fa8d3d6856ee421a8df2ca7736924efcac5eb43d0662043f8c', '[\"*\"]', NULL, NULL, '2024-03-05 18:46:58', '2024-03-05 18:46:58'),
+(45, 'App\\Models\\User', 1, 'token', '4dd7934ab634a572669131972db8b533691c9089fe17fb9adade4245fec1e4ed', '[\"*\"]', NULL, NULL, '2024-03-05 18:47:39', '2024-03-05 18:47:39'),
+(46, 'App\\Models\\User', 1, 'token', '8e353dbdfdaf1e8c0b84e2943ad20241dcdf70963c5400fab938a812790a5a5b', '[\"*\"]', NULL, NULL, '2024-03-05 18:47:58', '2024-03-05 18:47:58'),
+(47, 'App\\Models\\User', 1, 'token', '17af4053e9b0833904c1af3fc773edcfd16d48b1e1258e3c6e12eda5d7cef466', '[\"*\"]', '2024-03-05 18:57:12', NULL, '2024-03-05 18:56:54', '2024-03-05 18:57:12'),
+(48, 'App\\Models\\User', 1, 'token', '4aa6678ada500e75c338c9e77113100b3f69ed23c7e01321fc9b3bd25bcc97b1', '[\"*\"]', NULL, NULL, '2024-03-05 18:59:07', '2024-03-05 18:59:07'),
+(49, 'App\\Models\\User', 1, 'token', '9cca1720ba9fc6d8bf3f90aaf5efc19745a73f497aca19f6a8d9bad79ccc49ba', '[\"*\"]', '2024-03-05 19:03:05', NULL, '2024-03-05 18:59:31', '2024-03-05 19:03:05'),
+(50, 'App\\Models\\User', 1, 'token', '0490c7dd5103b4e625c17d9ef145c652382e9914e0cd2525032aac0ee460a760', '[\"*\"]', '2024-03-05 19:07:37', NULL, '2024-03-05 19:03:39', '2024-03-05 19:07:37'),
+(51, 'App\\Models\\User', 1, 'token', '13f716856411da1919ccbf144b3cf35b061534ca6e0336783ab7b46bcf5134da', '[\"*\"]', NULL, NULL, '2024-03-05 19:05:33', '2024-03-05 19:05:33'),
+(52, 'App\\Models\\User', 1, 'token', '824c080d8355dd2331f5aaa0c6a9d8e707424f71a1e8e3c83e5236c8d5326983', '[\"*\"]', NULL, NULL, '2024-03-05 19:07:15', '2024-03-05 19:07:15'),
+(53, 'App\\Models\\User', 1, 'token', 'eb35d4fde38b9e7fe334642d5f0aaca73502d08df4a08001a002fa2eebc04823', '[\"*\"]', NULL, NULL, '2024-03-05 19:07:54', '2024-03-05 19:07:54'),
+(54, 'App\\Models\\User', 1, 'token', 'fd12012acaa00b7f4ddd6ff24f92a699d281dcdcae6cd8c21abc02d57f3d3bbb', '[\"*\"]', NULL, NULL, '2024-03-05 19:11:12', '2024-03-05 19:11:12'),
+(55, 'App\\Models\\User', 1, 'token', 'dbe1f0f6da719f23f76f7c4e86836aa8c08ae3f1f33aaa5076088e577245ea60', '[\"*\"]', NULL, NULL, '2024-03-05 19:12:57', '2024-03-05 19:12:57'),
+(56, 'App\\Models\\User', 1, 'token', '7faf445350d6611914c3e08fc0ea57dbb73251a7593f41ee25350e1c69a59b40', '[\"*\"]', NULL, NULL, '2024-03-05 19:44:06', '2024-03-05 19:44:06'),
+(57, 'App\\Models\\User', 1, 'token', '94e838107f2e74b5f640b808b1b900a9f831f94346bb0efaf55eda0d7161c3f5', '[\"*\"]', NULL, NULL, '2024-03-05 19:45:38', '2024-03-05 19:45:38'),
+(58, 'App\\Models\\User', 1, 'token', '4549a6cae68eba0feb1aac806f5e752168cb20c69508017abf92181c29e67a0f', '[\"*\"]', NULL, NULL, '2024-03-05 19:47:13', '2024-03-05 19:47:13'),
+(59, 'App\\Models\\User', 1, 'token', 'd941d358b5607bd455a2949c630efb642d9a90be3243b2ddeddf4bc51fc1b9f2', '[\"*\"]', '2024-03-05 19:47:54', NULL, '2024-03-05 19:47:53', '2024-03-05 19:47:54');
 
 -- --------------------------------------------------------
 
@@ -496,6 +525,19 @@ INSERT INTO `transfondos` (`id`, `nombre`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `users`
 --
 
+CREATE TABLE usuarios (
+    username VARCHAR(255) NOT NULL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO `usuarios` (`username`, `email`, `password`, `created_at`, `updated_at`) VALUES
+('admin', 'admin@admin', '$2y$10$yUvxFifsv6iTE.1qwFvkUeYPde782hLjA4.1aR5YO9MI.bW.HrKN.', '2024-03-03 12:11:30', '2024-03-03 12:11:30'),
+('Antoni', 'acabidasales@gmail.com', '$2y$10$5yx8gm37gE4f91Bly.fN9OdPA.NFVh0TMqh2EOlyA55pohci/7o8q', '2024-03-03 15:18:41', '2024-03-03 15:18:41'),
+('admin2', 'admin2@admin2', '$2y$10$5PsJQJYN5edkaHIxe3dk1.hWmqo/LZ8w5HCk.GxU6JDE6nNaFW9MS', '2024-03-05 18:33:29', '2024-03-05 18:33:29');
+
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -511,7 +553,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@admin', '$2y$10$yUvxFifsv6iTE.1qwFvkUeYPde782hLjA4.1aR5YO9MI.bW.HrKN.', '2024-03-03 12:11:30', '2024-03-03 12:11:30'),
-(2, 'Antoni', 'acabidasales@gmail.com', '$2y$10$5yx8gm37gE4f91Bly.fN9OdPA.NFVh0TMqh2EOlyA55pohci/7o8q', '2024-03-03 15:18:41', '2024-03-03 15:18:41');
+(2, 'Antoni', 'acabidasales@gmail.com', '$2y$10$5yx8gm37gE4f91Bly.fN9OdPA.NFVh0TMqh2EOlyA55pohci/7o8q', '2024-03-03 15:18:41', '2024-03-03 15:18:41'),
+(3, 'admin2', 'admin2@admin2', '$2y$10$5PsJQJYN5edkaHIxe3dk1.hWmqo/LZ8w5HCk.GxU6JDE6nNaFW9MS', '2024-03-05 18:33:29', '2024-03-05 18:33:29');
 
 -- --------------------------------------------------------
 
@@ -736,7 +779,7 @@ ALTER TABLE `personaje_competencia_habilidad`
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `razas`
@@ -754,7 +797,7 @@ ALTER TABLE `transfondos`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `virtudes_razas`
