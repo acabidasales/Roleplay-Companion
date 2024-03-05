@@ -14,7 +14,7 @@ use App\Http\Controllers\PersonajeController;
 use App\Http\Controllers\RazaController;
 use App\Http\Controllers\TransfondoController;
 use App\Http\Controllers\VirtudRazaController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsuariosrController;
 
 /*
 |--------------------------------------------------------------------------

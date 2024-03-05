@@ -11,7 +11,7 @@ const Register = () => {
     const submit = async (e) => {
         e.preventDefault();
 
-        await fetch('http://localhost:8000/api/register', {
+        await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL+'/api/register', {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -19,7 +19,7 @@ const Register = () => {
                 email,
                 password
             })
-        });
+        })
 
         await router.push('/login');
     }

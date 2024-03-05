@@ -8,7 +8,7 @@ import 'boxicons/css/boxicons.min.css';
 export default function User_navbar(user, auth) {
 
     const logout = async () => {
-        await fetch('http://localhost:8000/api/logout', {
+        await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL+'/api/logout', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
@@ -17,8 +17,6 @@ export default function User_navbar(user, auth) {
         await location.reload();
     }
     let menu;
-
-    console.log(user.auth);
 
     if (user.auth != true) {
         menu = (

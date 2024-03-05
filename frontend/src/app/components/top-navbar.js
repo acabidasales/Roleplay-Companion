@@ -14,15 +14,16 @@ export default function Top_navbar() {
         (
             async () => {
                 try {
-                    const response = await fetch('http://localhost:8000/api/user', {
+                    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL+'/api/user', {
                         credentials: 'include',
                     });
 
                     const content = await response.json();
-
+                    console.log(response);
                     setUser(content.username);
                     setAuth(true);
                 } catch (e) {
+                  console.log(e);
                     setAuth(false);
                 }
             }
