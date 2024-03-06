@@ -23,7 +23,7 @@ const Login = () => {
     }
 
     return (
-        <form onSubmit={submit} className='max-w-screen-md mx-auto bg-zinc-800'>
+        <form onSubmit={submit} className='max-w-screen-md mx-auto bg-zinc-800  z-0'>
             <div className='m-4 align-middle justify-center items-center'>
                 <h1 className="text-xl font-bold mt-4 mb-4 pt-2 text-white">Inicio de sesión</h1>
                 <p className='m-4 text-white'>Nombre de usuario:</p>

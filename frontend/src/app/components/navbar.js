@@ -4,7 +4,7 @@ import 'boxicons/css/boxicons.min.css'
 
 export default function Navbar() {
   return (
-    <div className='bg-zinc-800 sticky top-0 w-full max-h-16'>
+    <div className='bg-zinc-800 sticky -top-1 w-full max-h-16 z-50'>
         <ul className="navbar-nav flex">
         <Link id="0" href="/" className="nav-item active relative group flex">
             <div className="nav-link m-4">

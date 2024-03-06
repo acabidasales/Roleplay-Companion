@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Personajes() {
     return (
-        <div className='max-w-screen-md mx-auto'>
+        <div className='max-w-screen-md mx-auto z-0'>
             <h2 className='text-xl font-bold mt-4 mb-4 text-white'>Inicio2</h2>
             <div className='max-w-screen-md mx-auto bg-zinc-800'>
                 <div className='relative max-w-screen-md'>
