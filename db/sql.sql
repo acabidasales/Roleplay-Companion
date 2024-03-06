@@ -58,7 +58,7 @@ CREATE TABLE `campañas` (
   `nombre` varchar(255) DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
-  `propietario` varchar(255) NOT NULL
+  `propietario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -66,8 +66,8 @@ CREATE TABLE `campañas` (
 --
 
 INSERT INTO `campañas` (`id`, `nombre`, `imagen`, `descripcion`, `propietario`) VALUES
-(1, 'Bosque Tenebroso', 'bosque_tenebroso.jpg', 'En las fronteras del Reino de Eldoria yace un vasto y antiguo bosque conocido como el Bosque Tenebroso, un lugar donde la luz del sol lucha por penetrar la espesura de sus árboles centenarios. Los aldeanos de los alrededores cuentan historias de sombras que se mueven con vida propia y de un mal que duerme en el corazón del bosque. Cuando niños comienzan a desaparecer y una niebla antinatural envuelve los bordes del bosque, los héroes son convocados para investigar y enfrentar el creciente mal.', 'admin'),
-(3, 'Baldur\'s Gate 3', 'baldurs_gate_3.jpg', 'La ciudad de Baldur\'s Gate, una vez próspera y bulliciosa, ahora se encuentra sumida en la oscuridad y el caos. Extrañas criaturas emergen de las sombras, asolando los alrededores y sembrando el terror entre los habitantes. Rumores de cultos siniestros y conspiraciones mortales circulan por las calles, y una misteriosa influencia parece extender su dominio sobre la ciudad.\r\n\r\nLos aventureros, atraídos por el misterio y la promesa de riquezas, llegan a Baldur\'s Gate en busca de respuestas y fortuna. Sin embargo, pronto descubrirán que la ciudad está al borde del abismo y que su destino está entrelazado con fuerzas antiguas y oscuras que amenazan con desencadenar un mal indescriptible.\r\n\r\nCon una red de intrigas políticas, traiciones y peligros mortales que acechan en cada esquina, los aventureros deberán abrirse camino a través de las sombras de Baldur\'s Gate y descubrir la verdad detrás de la creciente oscuridad que se cierne sobre la ciudad. En su viaje, se encontrarán con aliados improbables, enemigos formidables y secretos olvidados que podrían cambiar el curso de la historia para siempre.', 'admin');
+(1, 'Bosque Tenebroso', 'bosque_tenebroso.jpg', 'En las fronteras del Reino de Eldoria yace un vasto y antiguo bosque conocido como el Bosque Tenebroso, un lugar donde la luz del sol lucha por penetrar la espesura de sus árboles centenarios. Los aldeanos de los alrededores cuentan historias de sombras que se mueven con vida propia y de un mal que duerme en el corazón del bosque. Cuando niños comienzan a desaparecer y una niebla antinatural envuelve los bordes del bosque, los héroes son convocados para investigar y enfrentar el creciente mal.', 1),
+(3, 'Baldur\'s Gate 3', 'baldurs_gate_3.jpg', 'La ciudad de Baldur\'s Gate, una vez próspera y bulliciosa, ahora se encuentra sumida en la oscuridad y el caos. Extrañas criaturas emergen de las sombras, asolando los alrededores y sembrando el terror entre los habitantes. Rumores de cultos siniestros y conspiraciones mortales circulan por las calles, y una misteriosa influencia parece extender su dominio sobre la ciudad.\r\n\r\nLos aventureros, atraídos por el misterio y la promesa de riquezas, llegan a Baldur\'s Gate en busca de respuestas y fortuna. Sin embargo, pronto descubrirán que la ciudad está al borde del abismo y que su destino está entrelazado con fuerzas antiguas y oscuras que amenazan con desencadenar un mal indescriptible.\r\n\r\nCon una red de intrigas políticas, traiciones y peligros mortales que acechan en cada esquina, los aventureros deberán abrirse camino a través de las sombras de Baldur\'s Gate y descubrir la verdad detrás de la creciente oscuridad que se cierne sobre la ciudad. En su viaje, se encontrarán con aliados improbables, enemigos formidables y secretos olvidados que podrían cambiar el curso de la historia para siempre.', 1);
 
 -- --------------------------------------------------------
 
@@ -248,7 +248,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `personajes` (
   `id` int(11) NOT NULL,
-  `usuario_propietario` varchar(255) DEFAULT NULL,
+  `usuario_propietario` int(11) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `id_raza` int(11) DEFAULT NULL,
   `id_clase` int(11) DEFAULT NULL,
@@ -276,12 +276,12 @@ CREATE TABLE `personajes` (
 --
 
 INSERT INTO `personajes` (`id`, `usuario_propietario`, `nombre`, `id_raza`, `id_clase`, `id_campaña`, `estado`, `nivel`, `imagen`, `car_fuerza`, `car_destreza`, `car_constitucion`, `car_inteligencia`, `car_sabiduria`, `car_carisma`, `id_transfondo`, `id_alineamiento`, `apariencia`, `edad`, `historia`, `notas`, `puntos_experiencia`) VALUES
-(1, 'admin', 'Astarion', 1, 9, 3, 'Vivo', 1, 'Astarion.png', 8, 17, 14, 13, 13, 10, 7, 8, 'Astarion es un elfo vampiro, de estatura media, con una apariencia elegante y refinada. Tiene piel pálida, cabello oscuro y ojos intensos, a menudo con un brillo rojizo cuando se siente hambriento de sangre. Su presencia exhuda una mezcla de encanto seductor y aura siniestra.', '239', 'Astarion es un elfo vampiro que lleva siglos vagando por el mundo tras haber sido esclavizado por un poderoso maestro vampiro. Marcado por una existencia de cautiverio y sed de sangre, su vida cambió drásticamente cuando logró escapar de las garras de su opresor. A pesar de su libertad recién encontrada, Astarion lucha constantemente con su naturaleza vampírica, que lo empuja hacia actos oscuros, aunque en el fondo anhela redención y un propósito nuevo. Su elegancia y encanto ocultan un alma torturada que busca su lugar en un mundo que ve a los de su especie con miedo y desprecio. A lo largo de sus viajes, Astarion busca comprender mejor su existencia inmortal y, quizás, encontrar una manera de liberarse de su maldición vampírica.', NULL, NULL),
-(2, 'admin', 'Corazon Sombrío', 1, 3, 3, 'Vivo', 1, 'Shadowheart.png', 12, 14, 14, 10, 16, 10, 1, 8, 'La apariencia de Corazón Sombrío es la de un elfo alto y pálido, con cabello oscuro y ojos intensos, a menudo con un brillo rojizo. Viste ropas elegantes y refinadas, y su presencia exuda un aura de misterio y encanto. Sin embargo, su apariencia también puede ser un tanto siniestra, reflejando su naturaleza vampírica. Su rostro suele mostrar una sonrisa burlona y una mirada penetrante que revela su inteligencia y astucia.', '40', 'Corazón Sombrío es una clériga devota de Shar, la diosa de la oscuridad y los secretos. Criada en un templo lejano y enviado en una misión sagrada, su fe y lealtades son puestas a prueba cuando se encuentra atrapada en una lucha por la supervivencia tras la infestación de un parásito cerebral. Con recuerdos fragmentados y el conocimiento de que lleva un artefacto divino de poder incalculable, Shadowheart busca tanto aliados como respuestas en un mundo que le es hostil.\r\n\r\nMisteriosa y reservada, Shadowheart lucha por reconciliar sus enseñanzas y su fe con las realidades brutales del mundo fuera de su templo. Su viaje no solo es físico sino espiritual, buscando comprender su lugar en los designios de Shar, mientras navega por la complejidad de la amistad, la confianza y el poder. Su historia es una de descubrimiento personal, confrontación de secretos oscuros y búsqueda de redención o dominio en un mundo caótico.', NULL, NULL),
-(3, 'admin', 'Gale', 4, 12, 3, 'Vivo', 1, 'Gale.png', 9, 14, 15, 16, 11, 13, 9, 1, 'Gale es un mago de aspecto distinguido y refinado. Su cabello oscuro está cuidadosamente peinado hacia atrás, y su rostro está marcado por rasgos angulares y una mirada penetrante. Viste túnicas elegantes y bien ajustadas, adornadas con detalles intrincados y bordados finos. A pesar de su apariencia pulcra, su mirada refleja una profunda sabiduría y una determinación feroz. En su cintura, lleva un cinturón adornado con varios bolsillos y estuches que contienen componentes mágicos y pergaminos, listos para desatar poderosos hechizos en un instante. Su porte es erguido y seguro, mostrando una confianza que sugiere una larga experiencia en los caminos del conocimiento arcano y la aventura.', '34', 'Gale, un mago ambicioso con una sed insaciable por el conocimiento arcano, se aventuró más allá de los límites de la magia segura, buscando poder a través de artefactos prohibidos. Su obsesión lo llevó a Baldur\'s Gate, en medio de una crisis que amenazaba con desatar un mal antiguo. Uniéndose a un grupo de aventureros, Gale busca redimir sus acciones pasadas y detener la amenaza, luchando contra los secretos oscuros que lo acechan.', NULL, NULL),
-(4, 'admin', 'Karlach', 2, 1, 3, 'Vivo', 1, 'Karlach.png', 15, 13, 14, 9, 12, 12, 10, 2, 'Karlach es una guerrera de aspecto imponente y feroz. Con una estatura alta y musculosa, lleva una armadura de placas oscura y adornada con runas, que refleja su habilidad en combate y su aura de misterio. Su cabello oscuro y corto enmarca un rostro marcado por cicatrices de batalla, y su mirada fría y determinada revela una determinación inquebrantable. Empuña una gran espada con habilidad y confianza, lista para enfrentarse a cualquier desafío que se interponga en su camino.', 'Indeterminada', 'Karlach es una guerrera curtida en la batalla, cuya vida está marcada por el conflicto y la lucha. Nacida en las tierras fronterizas, creció en un ambiente de guerra constante y aprendió desde joven a defenderse por sí misma. Con el tiempo, se convirtió en una guerrera formidable, ganando reputación por su habilidad en combate y su determinación inquebrantable.\r\n\r\nA lo largo de los años, Karlach ha viajado por tierras lejanas, luchando en numerosas batallas y enfrentándose a enemigos mortales. Su vida está marcada por cicatrices de guerra y recuerdos dolorosos, pero también por momentos de coraje y victoria.\r\n\r\nAhora, Karlach se encuentra en Baldur\'s Gate, buscando un nuevo propósito y una oportunidad para dejar atrás su pasado tumultuoso. Aunque su corazón está endurecido por las batallas que ha librado, aún conserva una chispa de esperanza de encontrar un destino digno y un futuro más brillante.', NULL, NULL),
-(5, 'admin', 'Lae\'zel', 5, 5, 3, 'Vivo', 1, 'Laezel.png', 17, 13, 14, 11, 12, 8, 10, 4, 'Lae\'Zel es una guerrera githyanki de aspecto feroz y distinguido. Con una estatura alta y esbelta, su piel pálida contrasta con su cabello blanco plateado, que cae en trenzas elaboradas alrededor de su cabeza. Sus ojos brillan con una intensidad penetrante, reflejando su determinación y orgullo. Viste una armadura ligera pero resistente, adornada con símbolos de su linaje y trofeos de batalla. En su mano empuña una espada larga githyanki con destreza y confianza, lista para enfrentarse a cualquier desafío con fiereza implacable.', 'Indeterminada', 'Lae\'Zel es una guerrera githyanki dedicada y feroz que se encuentra en una misión para destruir a los parásitos cerebrales y a sus huéspedes. Capturada y encerrada en un ataúd de nautiloide, busca desesperadamente una cura para su propia infección por un parásito cerebral. Su lealtad a su gente y su desdén por aquellos que considera inferiores definen su enfoque pragmático y a menudo impaciente hacia los demás.', NULL, NULL),
-(6, 'admin', 'Wyll', 4, 11, 3, 'Vivo', 1, 'Wyll.png', 9, 13, 15, 14, 11, 16, 5, 3, 'Wyll tiene el cabello castaño oscuro ordenado en hileras ordenadas con los lados recortados y una barba circular recortada que adorna su rostro. Su ojo derecho está hecho de una piedra enviadora, regalada por Mizora como reemplazo después de perder su ojo luchando contra los cultistas, y sirve como método para seguirlo. A pesar de las cicatrices que adornan su rostro, conserva un rostro juvenil y una mirada amigable pero decidida. Se viste con modestia, su atuendo es adecuado para el combate y la caza, y lo único que insinúa su educación noble es su estoque.', '24', 'Wyll, hijo del gran duque Ulder Ravengard, observó muchos de los funcionamientos políticos internos de Baldur\'s Gate mientras crecía. Su madre, Francesca, murió al dar a luz y pasó una infancia en gran medida feliz siendo entrenado por su padre, que provenía de una clase trabajadora, y le enseñó habilidades prácticas como el manejo de la espada. Gran parte de los principios de Wyll provienen de su padre, quien le inculcó un sentido del deber hacia la ciudad de Baldur\'s Gate y su gente. A medida que su padre ascendía en las filas de la nobleza, Wyll participó en muchas reuniones nobles y conoció bien ese lado de la ciudad.\r\n', NULL, NULL);
+(1, 1, 'Astarion', 1, 9, 3, 'Vivo', 1, 'Astarion.png', 8, 17, 14, 13, 13, 10, 7, 8, 'Astarion es un elfo vampiro, de estatura media, con una apariencia elegante y refinada. Tiene piel pálida, cabello oscuro y ojos intensos, a menudo con un brillo rojizo cuando se siente hambriento de sangre. Su presencia exhuda una mezcla de encanto seductor y aura siniestra.', '239', 'Astarion es un elfo vampiro que lleva siglos vagando por el mundo tras haber sido esclavizado por un poderoso maestro vampiro. Marcado por una existencia de cautiverio y sed de sangre, su vida cambió drásticamente cuando logró escapar de las garras de su opresor. A pesar de su libertad recién encontrada, Astarion lucha constantemente con su naturaleza vampírica, que lo empuja hacia actos oscuros, aunque en el fondo anhela redención y un propósito nuevo. Su elegancia y encanto ocultan un alma torturada que busca su lugar en un mundo que ve a los de su especie con miedo y desprecio. A lo largo de sus viajes, Astarion busca comprender mejor su existencia inmortal y, quizás, encontrar una manera de liberarse de su maldición vampírica.', NULL, NULL),
+(2, 1, 'Corazon Sombrío', 1, 3, 3, 'Vivo', 1, 'Shadowheart.png', 12, 14, 14, 10, 16, 10, 1, 8, 'La apariencia de Corazón Sombrío es la de un elfo alto y pálido, con cabello oscuro y ojos intensos, a menudo con un brillo rojizo. Viste ropas elegantes y refinadas, y su presencia exuda un aura de misterio y encanto. Sin embargo, su apariencia también puede ser un tanto siniestra, reflejando su naturaleza vampírica. Su rostro suele mostrar una sonrisa burlona y una mirada penetrante que revela su inteligencia y astucia.', '40', 'Corazón Sombrío es una clériga devota de Shar, la diosa de la oscuridad y los secretos. Criada en un templo lejano y enviado en una misión sagrada, su fe y lealtades son puestas a prueba cuando se encuentra atrapada en una lucha por la supervivencia tras la infestación de un parásito cerebral. Con recuerdos fragmentados y el conocimiento de que lleva un artefacto divino de poder incalculable, Shadowheart busca tanto aliados como respuestas en un mundo que le es hostil.\r\n\r\nMisteriosa y reservada, Shadowheart lucha por reconciliar sus enseñanzas y su fe con las realidades brutales del mundo fuera de su templo. Su viaje no solo es físico sino espiritual, buscando comprender su lugar en los designios de Shar, mientras navega por la complejidad de la amistad, la confianza y el poder. Su historia es una de descubrimiento personal, confrontación de secretos oscuros y búsqueda de redención o dominio en un mundo caótico.', NULL, NULL),
+(3, 1, 'Gale', 4, 12, 3, 'Vivo', 1, 'Gale.png', 9, 14, 15, 16, 11, 13, 9, 1, 'Gale es un mago de aspecto distinguido y refinado. Su cabello oscuro está cuidadosamente peinado hacia atrás, y su rostro está marcado por rasgos angulares y una mirada penetrante. Viste túnicas elegantes y bien ajustadas, adornadas con detalles intrincados y bordados finos. A pesar de su apariencia pulcra, su mirada refleja una profunda sabiduría y una determinación feroz. En su cintura, lleva un cinturón adornado con varios bolsillos y estuches que contienen componentes mágicos y pergaminos, listos para desatar poderosos hechizos en un instante. Su porte es erguido y seguro, mostrando una confianza que sugiere una larga experiencia en los caminos del conocimiento arcano y la aventura.', '34', 'Gale, un mago ambicioso con una sed insaciable por el conocimiento arcano, se aventuró más allá de los límites de la magia segura, buscando poder a través de artefactos prohibidos. Su obsesión lo llevó a Baldur\'s Gate, en medio de una crisis que amenazaba con desatar un mal antiguo. Uniéndose a un grupo de aventureros, Gale busca redimir sus acciones pasadas y detener la amenaza, luchando contra los secretos oscuros que lo acechan.', NULL, NULL),
+(4, 1, 'Karlach', 2, 1, 3, 'Vivo', 1, 'Karlach.png', 15, 13, 14, 9, 12, 12, 10, 2, 'Karlach es una guerrera de aspecto imponente y feroz. Con una estatura alta y musculosa, lleva una armadura de placas oscura y adornada con runas, que refleja su habilidad en combate y su aura de misterio. Su cabello oscuro y corto enmarca un rostro marcado por cicatrices de batalla, y su mirada fría y determinada revela una determinación inquebrantable. Empuña una gran espada con habilidad y confianza, lista para enfrentarse a cualquier desafío que se interponga en su camino.', 'Indeterminada', 'Karlach es una guerrera curtida en la batalla, cuya vida está marcada por el conflicto y la lucha. Nacida en las tierras fronterizas, creció en un ambiente de guerra constante y aprendió desde joven a defenderse por sí misma. Con el tiempo, se convirtió en una guerrera formidable, ganando reputación por su habilidad en combate y su determinación inquebrantable.\r\n\r\nA lo largo de los años, Karlach ha viajado por tierras lejanas, luchando en numerosas batallas y enfrentándose a enemigos mortales. Su vida está marcada por cicatrices de guerra y recuerdos dolorosos, pero también por momentos de coraje y victoria.\r\n\r\nAhora, Karlach se encuentra en Baldur\'s Gate, buscando un nuevo propósito y una oportunidad para dejar atrás su pasado tumultuoso. Aunque su corazón está endurecido por las batallas que ha librado, aún conserva una chispa de esperanza de encontrar un destino digno y un futuro más brillante.', NULL, NULL),
+(5, 1, 'Lae\'zel', 5, 5, 3, 'Vivo', 1, 'Laezel.png', 17, 13, 14, 11, 12, 8, 10, 4, 'Lae\'Zel es una guerrera githyanki de aspecto feroz y distinguido. Con una estatura alta y esbelta, su piel pálida contrasta con su cabello blanco plateado, que cae en trenzas elaboradas alrededor de su cabeza. Sus ojos brillan con una intensidad penetrante, reflejando su determinación y orgullo. Viste una armadura ligera pero resistente, adornada con símbolos de su linaje y trofeos de batalla. En su mano empuña una espada larga githyanki con destreza y confianza, lista para enfrentarse a cualquier desafío con fiereza implacable.', 'Indeterminada', 'Lae\'Zel es una guerrera githyanki dedicada y feroz que se encuentra en una misión para destruir a los parásitos cerebrales y a sus huéspedes. Capturada y encerrada en un ataúd de nautiloide, busca desesperadamente una cura para su propia infección por un parásito cerebral. Su lealtad a su gente y su desdén por aquellos que considera inferiores definen su enfoque pragmático y a menudo impaciente hacia los demás.', NULL, NULL),
+(6, 1, 'Wyll', 4, 11, 3, 'Vivo', 1, 'Wyll.png', 9, 13, 15, 14, 11, 16, 5, 3, 'Wyll tiene el cabello castaño oscuro ordenado en hileras ordenadas con los lados recortados y una barba circular recortada que adorna su rostro. Su ojo derecho está hecho de una piedra enviadora, regalada por Mizora como reemplazo después de perder su ojo luchando contra los cultistas, y sirve como método para seguirlo. A pesar de las cicatrices que adornan su rostro, conserva un rostro juvenil y una mirada amigable pero decidida. Se viste con modestia, su atuendo es adecuado para el combate y la caza, y lo único que insinúa su educación noble es su estoque.', '24', 'Wyll, hijo del gran duque Ulder Ravengard, observó muchos de los funcionamientos políticos internos de Baldur\'s Gate mientras crecía. Su madre, Francesca, murió al dar a luz y pasó una infancia en gran medida feliz siendo entrenado por su padre, que provenía de una clase trabajadora, y le enseñó habilidades prácticas como el manejo de la espada. Gran parte de los principios de Wyll provienen de su padre, quien le inculcó un sentido del deber hacia la ciudad de Baldur\'s Gate y su gente. A medida que su padre ascendía en las filas de la nobleza, Wyll participó en muchas reuniones nobles y conoció bien ese lado de la ciudad.\r\n', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -394,71 +394,6 @@ CREATE TABLE `personal_access_tokens` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `personal_access_tokens`
---
-
-INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
-(1, 'App\\Models\\User', 1, 'token', '3a930769a1b4dcb859e4f64d9d514b9b8e49b475a75f5d696de4235509c78eda', '[\"*\"]', NULL, NULL, '2024-03-03 12:25:28', '2024-03-03 12:25:28'),
-(2, 'App\\Models\\User', 1, 'token', '8d9ee0506a1f9767edcb8c07f62d4bcd2d8372b0ac47eedf31ed1451dd0ee7ab', '[\"*\"]', NULL, NULL, '2024-03-03 12:29:51', '2024-03-03 12:29:51'),
-(3, 'App\\Models\\User', 1, 'token', 'a221aa73a22d967a24be7a73aea23d2dc9bd1c06f496a677f326631b301f8289', '[\"*\"]', '2024-03-03 12:55:25', NULL, '2024-03-03 12:52:11', '2024-03-03 12:55:25'),
-(4, 'App\\Models\\User', 1, 'token', '5dbc285e63b3a93d2b32827f454a73380a9f72d492ff63787f4faf112be80549', '[\"*\"]', NULL, NULL, '2024-03-03 12:53:49', '2024-03-03 12:53:49'),
-(5, 'App\\Models\\User', 1, 'token', 'c8f6e4baae3fb4793cdf55b272a823dc8d8163e747c19f0332dd91162eef3fd5', '[\"*\"]', NULL, NULL, '2024-03-03 12:54:32', '2024-03-03 12:54:32'),
-(6, 'App\\Models\\User', 1, 'token', '115ec5a38900ef662b788af829f8d9c42e9f245e1fe1cc759f5b031bd439a363', '[\"*\"]', '2024-03-03 13:08:51', NULL, '2024-03-03 12:54:50', '2024-03-03 13:08:51'),
-(7, 'App\\Models\\User', 1, 'token', 'ad7154d4c1620c2a9eedd9f28f961fbf61a2e2cdad72513d5c352e59daec80cc', '[\"*\"]', '2024-03-03 13:09:44', NULL, '2024-03-03 13:09:36', '2024-03-03 13:09:44'),
-(8, 'App\\Models\\User', 1, 'token', 'b47393cd8ecc0bb1e5e71bc599202a017cbcd3a31d5a1b0226e75bf7a3ed1c5f', '[\"*\"]', NULL, NULL, '2024-03-03 13:24:06', '2024-03-03 13:24:06'),
-(9, 'App\\Models\\User', 1, 'token', '5e8a10c2b9e0efd2415a2b8b7f8ae7265b286989a5fdd0c338dd0cc403505d62', '[\"*\"]', NULL, NULL, '2024-03-03 13:25:32', '2024-03-03 13:25:32'),
-(10, 'App\\Models\\User', 1, 'token', 'add4ffa72ca0c9e62787e8ff4ac664cb2ebdf6d6b2d7aef6372200b322919678', '[\"*\"]', NULL, NULL, '2024-03-03 13:25:51', '2024-03-03 13:25:51'),
-(11, 'App\\Models\\User', 1, 'token', 'ec91521b3b6d50234f0d695a1123a99f9348e7c7fa11c29f5da455f32a9d5cfd', '[\"*\"]', NULL, NULL, '2024-03-03 13:26:08', '2024-03-03 13:26:08'),
-(12, 'App\\Models\\User', 1, 'token', 'bcf663b241718fbf9cbae66150c1027197db2b7854c1b716246ffca4869728d8', '[\"*\"]', NULL, NULL, '2024-03-03 13:26:09', '2024-03-03 13:26:09'),
-(13, 'App\\Models\\User', 1, 'token', 'c2418b367a162fac79198279e6e1eefa37615bf61cf96b156681d29789dbf979', '[\"*\"]', NULL, NULL, '2024-03-03 13:26:11', '2024-03-03 13:26:11'),
-(14, 'App\\Models\\User', 1, 'token', '3bcac2f7a883eb7ae0b22ad6c94cfe20039cc418416b3afc3f365de3bccb42cc', '[\"*\"]', '2024-03-03 14:21:09', NULL, '2024-03-03 13:29:40', '2024-03-03 14:21:09'),
-(15, 'App\\Models\\User', 1, 'token', 'abcfb83b0488f12ec49ad91c4345104b3bdb225f2ebb7a5de60dcb1ed5800421', '[\"*\"]', '2024-03-03 14:38:50', NULL, '2024-03-03 14:24:05', '2024-03-03 14:38:50'),
-(16, 'App\\Models\\User', 1, 'token', '5226b1a0337b05c64acdc607d62306bd887e86d4d9aa241b60bee3bafba379b3', '[\"*\"]', '2024-03-03 14:39:44', NULL, '2024-03-03 14:39:15', '2024-03-03 14:39:44'),
-(17, 'App\\Models\\User', 1, 'token', '5a576118bb8ce6774fa5b33bbd535a5f9f6a310756d9505f7967ed772ec346e7', '[\"*\"]', '2024-03-03 14:46:05', NULL, '2024-03-03 14:40:08', '2024-03-03 14:46:05'),
-(18, 'App\\Models\\User', 1, 'token', '2f33ac793ce2d15570bf991dea2c5be17f3ac7e4803c00b4c2dfed9af84d8028', '[\"*\"]', '2024-03-03 14:49:01', NULL, '2024-03-03 14:48:29', '2024-03-03 14:49:01'),
-(19, 'App\\Models\\User', 1, 'token', 'e4a9f3e8770cb0d94168e356ab3dee8151205ecb83ad310168ac05b4d94b1b52', '[\"*\"]', '2024-03-03 14:50:12', NULL, '2024-03-03 14:49:51', '2024-03-03 14:50:12'),
-(20, 'App\\Models\\User', 1, 'token', '3ff8c3b4b8232c4d9ec0c6f17ed16bb715ed73c18349c96828a0fcd57fb24bff', '[\"*\"]', '2024-03-03 14:54:42', NULL, '2024-03-03 14:51:16', '2024-03-03 14:54:42'),
-(21, 'App\\Models\\User', 1, 'token', 'd619889e8821ceac484b71c47e9c07e81afc30649fff02e245c6ff3b5654d6b3', '[\"*\"]', '2024-03-03 14:58:14', NULL, '2024-03-03 14:54:51', '2024-03-03 14:58:14'),
-(22, 'App\\Models\\User', 1, 'token', 'd26cfb537f60ca1ce510da4299cdd074711a521d629887fa1609f85a967224f5', '[\"*\"]', '2024-03-03 14:59:06', NULL, '2024-03-03 14:58:26', '2024-03-03 14:59:06'),
-(23, 'App\\Models\\User', 1, 'token', 'f3b7394285a07415220339e428103082d8cc32a4c0786a963f5b62135c9cbaef', '[\"*\"]', '2024-03-03 15:02:03', NULL, '2024-03-03 14:59:14', '2024-03-03 15:02:03'),
-(24, 'App\\Models\\User', 1, 'token', 'a51a239e0531ab0635655512b87a996f9cc88c89d54017df73b382f3e133386a', '[\"*\"]', NULL, NULL, '2024-03-03 15:02:12', '2024-03-03 15:02:12'),
-(25, 'App\\Models\\User', 1, 'token', '2d16369247bac490ae912f728075e325787f73958b741340261a7da70f7814a1', '[\"*\"]', NULL, NULL, '2024-03-03 15:04:55', '2024-03-03 15:04:55'),
-(26, 'App\\Models\\User', 1, 'token', 'dd4a0af152302f712b4960304ec7b4ff0a88836b48227b77be23c2b0c76be730', '[\"*\"]', '2024-03-03 15:07:50', NULL, '2024-03-03 15:05:51', '2024-03-03 15:07:50'),
-(27, 'App\\Models\\User', 1, 'token', 'e8b6f6ffa5f433f86f8c6cac659d4d0d9f15acf30534447227d0ef8ba9c29337', '[\"*\"]', '2024-03-03 15:10:05', NULL, '2024-03-03 15:09:56', '2024-03-03 15:10:05'),
-(28, 'App\\Models\\User', 1, 'token', '747779b43e91cf1dd4a2cbf25da949cd6d00f124cf6bdfe88107b5bb7e31fd1b', '[\"*\"]', '2024-03-03 15:14:24', NULL, '2024-03-03 15:10:12', '2024-03-03 15:14:24'),
-(29, 'App\\Models\\User', 1, 'token', '4393c4c78b27ad230821d16d0d8c47de4dedd1a3d566b0aea0c05a0d197e2a1b', '[\"*\"]', '2024-03-03 18:34:14', NULL, '2024-03-03 18:34:06', '2024-03-03 18:34:14'),
-(30, 'App\\Models\\User', 1, 'token', '0e08eb3838b0f1dee8f5873ed66493cd23013b6faa6af621c624ef2212f93feb', '[\"*\"]', '2024-03-04 18:36:58', NULL, '2024-03-04 18:36:57', '2024-03-04 18:36:58'),
-(31, 'App\\Models\\User', 1, 'token', 'e202ae4b9cddaad96f31ddc655ce42b8e72c69bb16c3da07a3b82fb455e77cfb', '[\"*\"]', '2024-03-05 17:49:05', NULL, '2024-03-05 17:49:01', '2024-03-05 17:49:05'),
-(32, 'App\\Models\\User', 1, 'token', 'd9cd0174389d3ba5ce6225013aea54c70895473171ac858e7056423b6f69fa62', '[\"*\"]', NULL, NULL, '2024-03-05 18:32:01', '2024-03-05 18:32:01'),
-(33, 'App\\Models\\User', 1, 'token', '7161f0407891815f0f841ebbae5023d37f17faca56ebe5a050f7eb70564ab933', '[\"*\"]', NULL, NULL, '2024-03-05 18:33:55', '2024-03-05 18:33:55'),
-(34, 'App\\Models\\User', 3, 'token', '695b5ba4bf4e6660628ebdfd1e6ef0a5f04578d6f7d9271633e7dd98eb6dcff9', '[\"*\"]', NULL, NULL, '2024-03-05 18:34:10', '2024-03-05 18:34:10'),
-(35, 'App\\Models\\User', 1, 'token', '026d221792cd1acbf8fd42faff1e8fd482641d966c14a4fe7915067c19767333', '[\"*\"]', NULL, NULL, '2024-03-05 18:35:12', '2024-03-05 18:35:12'),
-(36, 'App\\Models\\User', 1, 'token', '666091fa2809917b8d4a31209ac7a57d468ecb88cd4afc7b3d351eed7b5d8b37', '[\"*\"]', NULL, NULL, '2024-03-05 18:35:32', '2024-03-05 18:35:32'),
-(37, 'App\\Models\\User', 3, 'token', '30316b629847c7aab597d36394e5a68b8c1f28144aca0009789256403983fb3b', '[\"*\"]', NULL, NULL, '2024-03-05 18:36:29', '2024-03-05 18:36:29'),
-(38, 'App\\Models\\User', 1, 'token', '0f39d031a4b99d73dc51a6c5665ead5b5c1cdd469c7136492398935a504d7329', '[\"*\"]', NULL, NULL, '2024-03-05 18:39:41', '2024-03-05 18:39:41'),
-(39, 'App\\Models\\User', 1, 'token', 'e72766978ca18ace18c452fd44e79b2e83e217c72dfe5a71cd525a14231f5bfb', '[\"*\"]', NULL, NULL, '2024-03-05 18:40:52', '2024-03-05 18:40:52'),
-(40, 'App\\Models\\User', 1, 'token', '6601187dba999b787267d8f5100d4e43b7b85b8466009368bd6b22fa72ff0fbb', '[\"*\"]', NULL, NULL, '2024-03-05 18:41:30', '2024-03-05 18:41:30'),
-(41, 'App\\Models\\User', 1, 'token', '6ae8f1bccaaeb39c43e970d6932a896ce106efeab8fc51cf84ffa151193e4854', '[\"*\"]', NULL, NULL, '2024-03-05 18:42:40', '2024-03-05 18:42:40'),
-(42, 'App\\Models\\User', 1, 'token', '724edbff5734666f7e99001256f6070983803c4251b1c71b8ea1e0909d747d39', '[\"*\"]', NULL, NULL, '2024-03-05 18:45:41', '2024-03-05 18:45:41'),
-(43, 'App\\Models\\User', 1, 'token', 'f9a6eee612f17ea928b69bc16d21d9139c3fcbad7216cfad97d344f62f68ccdc', '[\"*\"]', NULL, NULL, '2024-03-05 18:46:28', '2024-03-05 18:46:28'),
-(44, 'App\\Models\\User', 1, 'token', '188305aafbff46fa8d3d6856ee421a8df2ca7736924efcac5eb43d0662043f8c', '[\"*\"]', NULL, NULL, '2024-03-05 18:46:58', '2024-03-05 18:46:58'),
-(45, 'App\\Models\\User', 1, 'token', '4dd7934ab634a572669131972db8b533691c9089fe17fb9adade4245fec1e4ed', '[\"*\"]', NULL, NULL, '2024-03-05 18:47:39', '2024-03-05 18:47:39'),
-(46, 'App\\Models\\User', 1, 'token', '8e353dbdfdaf1e8c0b84e2943ad20241dcdf70963c5400fab938a812790a5a5b', '[\"*\"]', NULL, NULL, '2024-03-05 18:47:58', '2024-03-05 18:47:58'),
-(47, 'App\\Models\\User', 1, 'token', '17af4053e9b0833904c1af3fc773edcfd16d48b1e1258e3c6e12eda5d7cef466', '[\"*\"]', '2024-03-05 18:57:12', NULL, '2024-03-05 18:56:54', '2024-03-05 18:57:12'),
-(48, 'App\\Models\\User', 1, 'token', '4aa6678ada500e75c338c9e77113100b3f69ed23c7e01321fc9b3bd25bcc97b1', '[\"*\"]', NULL, NULL, '2024-03-05 18:59:07', '2024-03-05 18:59:07'),
-(49, 'App\\Models\\User', 1, 'token', '9cca1720ba9fc6d8bf3f90aaf5efc19745a73f497aca19f6a8d9bad79ccc49ba', '[\"*\"]', '2024-03-05 19:03:05', NULL, '2024-03-05 18:59:31', '2024-03-05 19:03:05'),
-(50, 'App\\Models\\User', 1, 'token', '0490c7dd5103b4e625c17d9ef145c652382e9914e0cd2525032aac0ee460a760', '[\"*\"]', '2024-03-05 19:07:37', NULL, '2024-03-05 19:03:39', '2024-03-05 19:07:37'),
-(51, 'App\\Models\\User', 1, 'token', '13f716856411da1919ccbf144b3cf35b061534ca6e0336783ab7b46bcf5134da', '[\"*\"]', NULL, NULL, '2024-03-05 19:05:33', '2024-03-05 19:05:33'),
-(52, 'App\\Models\\User', 1, 'token', '824c080d8355dd2331f5aaa0c6a9d8e707424f71a1e8e3c83e5236c8d5326983', '[\"*\"]', NULL, NULL, '2024-03-05 19:07:15', '2024-03-05 19:07:15'),
-(53, 'App\\Models\\User', 1, 'token', 'eb35d4fde38b9e7fe334642d5f0aaca73502d08df4a08001a002fa2eebc04823', '[\"*\"]', NULL, NULL, '2024-03-05 19:07:54', '2024-03-05 19:07:54'),
-(54, 'App\\Models\\User', 1, 'token', 'fd12012acaa00b7f4ddd6ff24f92a699d281dcdcae6cd8c21abc02d57f3d3bbb', '[\"*\"]', NULL, NULL, '2024-03-05 19:11:12', '2024-03-05 19:11:12'),
-(55, 'App\\Models\\User', 1, 'token', 'dbe1f0f6da719f23f76f7c4e86836aa8c08ae3f1f33aaa5076088e577245ea60', '[\"*\"]', NULL, NULL, '2024-03-05 19:12:57', '2024-03-05 19:12:57'),
-(56, 'App\\Models\\User', 1, 'token', '7faf445350d6611914c3e08fc0ea57dbb73251a7593f41ee25350e1c69a59b40', '[\"*\"]', NULL, NULL, '2024-03-05 19:44:06', '2024-03-05 19:44:06'),
-(57, 'App\\Models\\User', 1, 'token', '94e838107f2e74b5f640b808b1b900a9f831f94346bb0efaf55eda0d7161c3f5', '[\"*\"]', NULL, NULL, '2024-03-05 19:45:38', '2024-03-05 19:45:38'),
-(58, 'App\\Models\\User', 1, 'token', '4549a6cae68eba0feb1aac806f5e752168cb20c69508017abf92181c29e67a0f', '[\"*\"]', NULL, NULL, '2024-03-05 19:47:13', '2024-03-05 19:47:13'),
-(59, 'App\\Models\\User', 1, 'token', 'd941d358b5607bd455a2949c630efb642d9a90be3243b2ddeddf4bc51fc1b9f2', '[\"*\"]', '2024-03-05 19:47:54', NULL, '2024-03-05 19:47:53', '2024-03-05 19:47:54');
-
 -- --------------------------------------------------------
 
 --
@@ -525,36 +460,21 @@ INSERT INTO `transfondos` (`id`, `nombre`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `users`
 --
 
-CREATE TABLE usuarios (
-    username VARCHAR(255) NOT NULL PRIMARY KEY,
+CREATE TABLE users (
+    id INT AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 );
 
-INSERT INTO `usuarios` (`username`, `email`, `password`, `created_at`, `updated_at`) VALUES
+
+INSERT INTO `users` (`username`, `email`, `password`, `created_at`, `updated_at`) VALUES
 ('admin', 'admin@admin', '$2y$10$yUvxFifsv6iTE.1qwFvkUeYPde782hLjA4.1aR5YO9MI.bW.HrKN.', '2024-03-03 12:11:30', '2024-03-03 12:11:30'),
 ('Antoni', 'acabidasales@gmail.com', '$2y$10$5yx8gm37gE4f91Bly.fN9OdPA.NFVh0TMqh2EOlyA55pohci/7o8q', '2024-03-03 15:18:41', '2024-03-03 15:18:41'),
 ('admin2', 'admin2@admin2', '$2y$10$5PsJQJYN5edkaHIxe3dk1.hWmqo/LZ8w5HCk.GxU6JDE6nNaFW9MS', '2024-03-05 18:33:29', '2024-03-05 18:33:29');
-
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `users`
---
-
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin', '$2y$10$yUvxFifsv6iTE.1qwFvkUeYPde782hLjA4.1aR5YO9MI.bW.HrKN.', '2024-03-03 12:11:30', '2024-03-03 12:11:30'),
-(2, 'Antoni', 'acabidasales@gmail.com', '$2y$10$5yx8gm37gE4f91Bly.fN9OdPA.NFVh0TMqh2EOlyA55pohci/7o8q', '2024-03-03 15:18:41', '2024-03-03 15:18:41'),
-(3, 'admin2', 'admin2@admin2', '$2y$10$5PsJQJYN5edkaHIxe3dk1.hWmqo/LZ8w5HCk.GxU6JDE6nNaFW9MS', '2024-03-05 18:33:29', '2024-03-05 18:33:29');
 
 -- --------------------------------------------------------
 
@@ -698,13 +618,6 @@ ALTER TABLE `transfondos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
 -- Indices de la tabla `virtudes_razas`
 --
 ALTER TABLE `virtudes_razas`
@@ -794,12 +707,6 @@ ALTER TABLE `transfondos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT de la tabla `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT de la tabla `virtudes_razas`
 --
 ALTER TABLE `virtudes_razas`
@@ -813,7 +720,7 @@ ALTER TABLE `virtudes_razas`
 -- Filtros para la tabla `campañas`
 --
 ALTER TABLE `campañas`
-  ADD CONSTRAINT `campañas_ibfk_1` FOREIGN KEY (`propietario`) REFERENCES `usuarios` (`username`);
+  ADD CONSTRAINT `campañas_ibfk_1` FOREIGN KEY (`propietario`) REFERENCES `users` (`id`);
 
 --
 -- Filtros para la tabla `defectos_razas`
@@ -825,7 +732,7 @@ ALTER TABLE `defectos_razas`
 -- Filtros para la tabla `personajes`
 --
 ALTER TABLE `personajes`
-  ADD CONSTRAINT `personajes_ibfk_1` FOREIGN KEY (`usuario_propietario`) REFERENCES `usuarios` (`username`),
+  ADD CONSTRAINT `personajes_ibfk_1` FOREIGN KEY (`usuario_propietario`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `personajes_ibfk_2` FOREIGN KEY (`id_raza`) REFERENCES `razas` (`id`),
   ADD CONSTRAINT `personajes_ibfk_3` FOREIGN KEY (`id_clase`) REFERENCES `clases` (`id`),
   ADD CONSTRAINT `personajes_ibfk_4` FOREIGN KEY (`id_campaña`) REFERENCES `campañas` (`id`),
