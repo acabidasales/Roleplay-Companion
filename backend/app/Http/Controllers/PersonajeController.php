@@ -16,7 +16,6 @@ class PersonajeController extends Controller
      */
     public function store(Request $request)
     {
-        $usuario = JWTAuth::parseToken()->authenticate();
 
         $request->validate([
             'nombre' => 'required|string|max:255',
@@ -80,10 +79,12 @@ class PersonajeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
-        // Obtener todos los personajes con información relacionada
-        $personajes = Personaje::with('raza', 'clase', 'campaña', 'alineamiento', 'transfondo', 'competenciasEquipamiento', 'competenciasHabilidades')->get();
+        $userId = $request->user()->id;
+        $personajes = Personaje::where('usuario_propietario', $userId)
+        ->with('raza', 'clase', 'campaña', 'alineamiento', 'transfondo', 'competenciasEquipamiento', 'competenciasHabilidades')
+        ->get();
 
         return response()->json($personajes);
     }

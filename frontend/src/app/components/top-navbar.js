@@ -19,11 +19,9 @@ export default function Top_navbar() {
                     });
 
                     const content = await response.json();
-                    console.log(response);
                     setUser(content.username);
                     setAuth(true);
                 } catch (e) {
-                  console.log(e);
                     setAuth(false);
                 }
             }

@@ -34,6 +34,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::group(['middleware' => ['cors']], function () {
+        Route::apiResource('/personajes', PersonajeController::class);
+    });
 });
 
 // Rutas protegidas
@@ -44,7 +47,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('/usuarios', UserController::class);
 
-    Route::apiResource('/personajes', PersonajeController::class);
 
     Route::apiResource('/alineamientos', AlineamientoController::class)->only(['index', 'show']);
 

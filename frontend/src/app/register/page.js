@@ -26,7 +26,7 @@ const Register = () => {
 
     return (
             <form onSubmit={submit} className='max-w-screen-md mx-auto bg-zinc-800 z-0'>
-                <div className='m-4 align-middle justify-center items-center'>
+                <div className='m-4 align-middle justify-center items-center pb-4'>
                     <h1 className="text-xl font-bold mt-4 mb-4 pt-2 text-white">Registro</h1>
                     <p className='m-4 text-white'>Nombre de usuario:</p>
                     <input className="form-control text-black ml-4" placeholder="Username" required
@@ -46,6 +46,10 @@ const Register = () => {
                         <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                         <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                     </button>
+                    <a className='m-4 text-sky-500 relative group' onClick={() => router.push("/login")}>¿Ya tienes una cuenta? Hazme click
+                        <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
+                        <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
+                </a><br/>
                 </div>
             </form>
     );
