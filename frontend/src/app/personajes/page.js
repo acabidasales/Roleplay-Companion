@@ -1,7 +1,5 @@
 "use client"
 
-import Image from "next/image";
-import { cookies } from 'next/headers'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react";
 
