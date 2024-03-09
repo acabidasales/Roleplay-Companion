@@ -40,7 +40,7 @@ export default function Personajes() {
                 </Link>
             </div>
                 {data.map(data => 
-                    <div>
+                    <div key={data.id}>
                         <hr class="h-px my-8 bg-sky-600 border-0"></hr>
                         <p class="text-3xl font-extrabold text-white text-center">{data.alineamiento}</p>
                         <p class="text-zinc-200 text-center mt-8">{data.descripción}</p>
