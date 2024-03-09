@@ -53,7 +53,7 @@ export default function Navbar() {
             <div className="nav-link m-4">
             <div className='w-full h-full flex justify-center items-center'>
                 <i className='bx bx-food-menu bx-sm text-white'></i>
-                <p className={"inline-block align-middle text-lg group-hover:text-sky-500 " + (url === "/personajes" ? "text-sky-500" : "text-white")}>Wiki</p>
+                <p className={"inline-block align-middle text-lg group-hover:text-sky-500 " + (url === "/wiki" ? "text-sky-500" : "text-white")}>Wiki</p>
             </div>
             </div>
             <span className={"absolute bottom-0 left-1/2 w-0 h-1 bg-sky-500 " + (url === "/wiki" ? "w-1/2 transition-all" : "group-hover:w-1/2 group-hover:transition-all")}></span>
