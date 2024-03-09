@@ -39,30 +39,20 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-// Rutas protegidas
-/* Route::middleware('auth:api')->group(function () { */
-    /* Route::get('/user', function (Request $request) {
-        return $request->user();
-    }); */
+Route::apiResource('/alineamientos', AlineamientoController::class)->only(['index', 'show']);
 
-    Route::apiResource('/usuarios', UserController::class);
+Route::apiResource('/campanas', CampañaController::class)->only(['index', 'show']);
 
+Route::apiResource('/clases', ClaseController::class)->only(['index', 'show']);
 
-    Route::apiResource('/alineamientos', AlineamientoController::class)->only(['index', 'show']);
+Route::apiResource('/competencias-equipamiento', CompetenciaEquipamientoController::class)->only(['index', 'show']);
 
-    Route::apiResource('/campanas', CampañaController::class)->only(['index', 'show']);
+Route::apiResource('/competencias-habilidades', CompetenciaHabilidadesController::class)->only(['index', 'show']);
 
-    Route::apiResource('/clases', ClaseController::class)->only(['index', 'show']);
+Route::apiResource('/defectos-razas', DefectoRazaController::class)->only(['index', 'show']);
 
-    Route::apiResource('/competencias-equipamiento', CompetenciaEquipamientoController::class)->only(['index', 'show']);
+Route::apiResource('/razas', RazaController::class)->only(['index', 'show']);
 
-    Route::apiResource('/competencias-habilidades', CompetenciaHabilidadesController::class)->only(['index', 'show']);
+Route::apiResource('/transfondos', TransfondoController::class)->only(['index', 'show']);
 
-    Route::apiResource('/defectos-razas', DefectoRazaController::class)->only(['index', 'show']);
-
-    Route::apiResource('/razas', RazaController::class)->only(['index', 'show']);
-
-    Route::apiResource('/transfondos', TransfondoController::class)->only(['index', 'show']);
-
-    Route::apiResource('/virtudes-razas', VirtudRazaController::class)->only(['index', 'show']);
-/* }); */
+Route::apiResource('/virtudes-razas', VirtudRazaController::class)->only(['index', 'show']);

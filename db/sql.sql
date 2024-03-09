@@ -29,23 +29,25 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alineamientos` (
   `id` int(11) NOT NULL,
-  `alineamiento` varchar(255) DEFAULT NULL
+  `alineamiento` varchar(255) DEFAULT NULL,
+  `descripción` TEXT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `alineamientos`
 --
 
-INSERT INTO `alineamientos` (`id`, `alineamiento`) VALUES
-(1, 'Legal bueno'),
-(2, 'Neutral bueno'),
-(3, 'Caótico bueno'),
-(4, 'Legal neutral'),
-(5, 'Neutral'),
-(6, 'Caótico neutral'),
-(7, 'Legal maligno'),
-(8, 'Neutral maligno'),
-(9, 'Caótico maligno');
+INSERT INTO `alineamientos` (`id`, `alineamiento`, `descripción`) VALUES
+(1, 'Legal bueno', 'Cree en la combinación de orden y bienestar, con un fuerte sentido de justicia y un compromiso inquebrantable hacia las leyes y la bondad.'),
+(2, 'Neutral bueno', 'Hace lo mejor que puede para hacer el bien, sin inclinaciones hacia el orden ni el caos.'),
+(3, 'Caótico bueno', 'Actúa como su conciencia le dicta con poca inclinación hacia el orden social y las leyes.'),
+(4, 'Legal neutral', 'Actúa de acuerdo a la ley, tradición o códigos personales, sin inclinación hacia el bien o el mal.'),
+(5, 'Neutral', 'Prefiere evitar el conflicto entre bien y mal, ley y caos, actuando de forma natural sin prejuicio ni compulsión.'),
+(6, 'Caótico neutral', 'Valora su propia libertad y la capacidad de tomar decisiones, evitando cualquier tipo de autoridad que le restrinja.'),
+(7, 'Legal maligno', 'Utiliza el sistema, las leyes o los códigos para sus propósitos malignos, sin escrúpulos ni piedad, pero siguiendo un código.'),
+(8, 'Neutral maligno', 'Hace todo lo que puede para lograr sus fines malvados, sin inclinaciones particulares hacia el orden o el caos.'),
+(9, 'Caótico maligno', 'Representa el mal puro sin restricciones, la destrucción y el caos sin preocuparse por las leyes o la vida.');
+
 
 -- --------------------------------------------------------
 

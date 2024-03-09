@@ -35,11 +35,11 @@ export default function User_navbar(user, auth) {
         )
     } else {
         menu = (
-            <div className='absolute flex justify-center mr-16 max-w-64 mt-auto mb-auto top-6 right-0'>
+            <div className='absolute justify-center mr-16 max-w-64 my-auto top-4 right-0'>
                 <div className="w-full inline-flex">
-                    <p className="font-bold text-white">Bienvenido</p><p className="font-bold text-sky-500 ml-2">{user.user}</p><img className="w-8 ml-4 top-0" src="/iconos_usuarios/generic.png"/>
+                    <p className="font-bold text-white">Bienvenido</p><p className="font-bold text-sky-500 ml-2">{user.user}</p><img className="w-6 ml-4 top-0" src="/iconos_usuarios/generic.png"/>
                 </div>
-                <div className="nav-item pl-4">
+                <div className="right-0 mx-auto text-center">
                     <a href="#" className="nav-link text-white" onClick={logout}>Logout</a>
                 </div>
             </div>
@@ -47,7 +47,7 @@ export default function User_navbar(user, auth) {
     }
 
   return (
-        <div>
+        <div className="absolute z-50 right-0 top-0">
             {menu}
         </div>
   );
