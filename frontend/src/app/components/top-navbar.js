@@ -29,7 +29,7 @@ export default function Top_navbar() {
     }, []);
 
   return (
-        <nav id="navbar-hero" className="bg-zinc-900 bg-gradient-to-r from-sky-900 to-zync-900 w-screen h-[75px] z-50">
+        <nav id="navbar-hero" className="bg-zinc-900 bg-gradient-to-r from-sky-900 to-zync-900 w-screen h-[70px] z-50">
           <div className='relative inline-flex justify-center w-screen h-full items-center'>
             <Link href='/' className="">
                 <div className='w-full h-full inline-flex justify-center'>

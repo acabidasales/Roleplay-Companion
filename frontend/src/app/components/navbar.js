@@ -31,7 +31,7 @@ export default function Navbar() {
         <Link id="1" href="/personajes" className="nav-item relative group flex">
             <div className="nav-link m-4">
             <div className='w-full h-full flex justify-center items-center'>
-                <i className='bx bx-food-menu bx-sm text-white'></i>
+                <i className='bx bx-id-card bx-sm text-white mr-2'></i>
                 <p className={"inline-block align-middle text-lg group-hover:text-sky-500 " + (url === "/personajes" ? "text-sky-500" : "text-white")}>Mis personajes</p>
             </div>
             </div>
@@ -42,7 +42,7 @@ export default function Navbar() {
         <Link id="2" href="/campañas" className="nav-item relative group flex">
             <div className="nav-link m-4">
             <div className='w-full h-full flex justify-center items-center'>
-                <i className="bx bx-diamond bx-sm text-white"></i>
+                <i className="bx bx-diamond bx-sm text-white mr-2"></i>
                 <p className={"inline-block align-middle text-lg group-hover:text-sky-500 " + (url === "/campañas" ? "text-sky-500" : "text-white")}>Campañas</p>
             </div>
             </div>
@@ -52,7 +52,7 @@ export default function Navbar() {
         <Link id="3" href="/wiki" className="nav-item relative group flex">
             <div className="nav-link m-4">
             <div className='w-full h-full flex justify-center items-center'>
-                <i className='bx bx-food-menu bx-sm text-white'></i>
+                <i className='bx bx-food-menu bx-sm text-white mr-2'></i>
                 <p className={"inline-block align-middle text-lg group-hover:text-sky-500 " + (url === "/wiki" ? "text-sky-500" : "text-white")}>Wiki</p>
             </div>
             </div>
