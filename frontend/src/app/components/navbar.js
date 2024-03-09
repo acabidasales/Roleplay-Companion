@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link";
+import Image from "next/image";
 import "../globals.css";
 import 'boxicons/css/boxicons.min.css'
 import { usePathname } from 'next/navigation'

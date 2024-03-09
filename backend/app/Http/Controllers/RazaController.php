@@ -14,7 +14,7 @@ class RazaController extends Controller
      */
     public function index()
     {
-        $razas = Raza::all();
+        $razas = Raza::with(['virtudes', 'defectos'])->get();
         return response()->json($razas);
     }
 

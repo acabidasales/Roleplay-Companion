@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CompetenciaHabilidad;
 use Illuminate\Http\Request;
 
-class CompetenciaHabilidadController extends Controller
+class CompetenciaHabilidadesController extends Controller
 {
     /**
      * Muestra una lista de todas las competencias de habilidades.

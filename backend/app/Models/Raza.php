@@ -16,4 +16,14 @@ class Raza extends Model
         return $this->hasMany(Personaje::class, 'id_raza');
     }
 
+    public function virtudes()
+    {
+        return $this->hasMany(VirtudRaza::class, 'id_raza');
+    }
+
+    public function defectos()
+    {
+        return $this->hasMany(DefectoRaza::class, 'id_raza');
+    }
+
 }

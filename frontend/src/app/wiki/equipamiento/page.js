@@ -4,13 +4,13 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react";
 import Link from 'next/link';
 
-export default function Alineamientos() {
+export default function Equipamiento() {
     const router = useRouter()
     const [data, SetData] = useState({})
     const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL+'/api/alineamientos', {
+        fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL+'/api/competencias-equipamiento', {
             credentials: 'include',
         })
           .then((res) => res.json())
@@ -29,7 +29,7 @@ export default function Alineamientos() {
     return (
         <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-zinc-800 rounded pl-3 pr-3 pb-12 z-0 mt-4'>
             <div className='flex w-full relative'>
-                <h2 className='text-xl font-bold mt-4 mb-4 ml-4 pt-2 text-white flex-1'>Alineamientos</h2>
+                <h2 className='text-xl font-bold mt-4 mb-4 ml-4 pt-2 text-white flex-1'>Equipamiento</h2>
                 <Link href="/wiki" className="relative group flex float-end">
                     <div className='flex justify-center items-center'>
                         <i className='bx bx-first-page bx-sm text-white lg:max-w-10 lg:max-h-5 md:max-w-8 md:max-h-4 max-w-5 max-h-3 mr-2'></i>
@@ -42,8 +42,8 @@ export default function Alineamientos() {
                 {data.map(data => 
                     <div key={data.id}>
                         <hr className="h-px my-8 bg-sky-600 border-0"></hr>
-                        <p className="text-3xl font-extrabold text-white text-center">{data.alineamiento}</p>
-                        <p className="text-zinc-200 text-center mt-8">{data.descripción}</p>
+                        <p className="text-3xl font-extrabold text-white text-center">{data.nombre}</p>
+                        <p className="text-zinc-200 text-center mt-8">{data.descripcion}</p>
                     </div>
                 )}
         </div>
