@@ -1,11 +1,9 @@
 "use client"
 
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react";
 import Link from 'next/link';
 
 export default function Alineamientos() {
-    const router = useRouter()
     const [data, SetData] = useState({})
     const [isLoading, setLoading] = useState(true)
 

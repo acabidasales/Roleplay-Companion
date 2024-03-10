@@ -1,12 +1,11 @@
 "use client"
 import React, {useState} from 'react';
-import {useRouter} from "next/navigation";
+import Link from 'next/link';
 
 const Register = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const router = useRouter();
 
     const submit = async (e) => {
         e.preventDefault();
@@ -46,10 +45,10 @@ const Register = () => {
                         <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                         <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                     </button>
-                    <a className='m-4 text-sky-500 relative group' onClick={() => router.push("/login")}>¿Ya tienes una cuenta? Hazme click
+                    <Link className='m-4 text-sky-500 relative group' href="/login">¿Ya tienes una cuenta? Hazme click
                         <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                         <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-                </a><br/>
+                    </Link><br/>
                 </div>
             </form>
     );

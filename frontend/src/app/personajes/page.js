@@ -1,10 +1,9 @@
 "use client"
 
-import { useRouter } from 'next/navigation'
+import Link from 'next/link';
 import { useEffect, useState } from "react";
 
 export default function Personajes() {
-    const router = useRouter()
     const [data_personajes, SetData_Personajes] = useState({})
     const [isLoading, setLoading] = useState(true)
 
@@ -23,19 +22,19 @@ export default function Personajes() {
     if (isLoading) return (
         <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-zinc-800 rounded pl-3 pr-3 pb-3 z-0'>
             <p className="mt-4 mb-4 ml-4 pt-2 pb-2 text-center w-full">Debes estar registrado para acceder a tus personajes. Si no estas registrado, 
-                <a className='m-4 text-sky-500 relative group' onClick={() => router.push("/register")}>Hazme click
+                <Link className='m-4 text-sky-500 relative group' href="/register">Hazme click
                     <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                     <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-                </a><br/></p>
+                </Link><br/></p>
         </div>
     )
     if (data_personajes.length == 0) return (
         <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-zinc-800 rounded pl-3 pr-3 pb-3 z-0'>
             <p className="mt-4 mb-4 ml-4 pt-2 pb-2 text-center w-full"> ¡Vaya! Parece que no tienes ningún personaje.
-                <a className='m-4 text-sky-500 relative group' onClick={() => router.push("/personajes/create")}>Hazme click para crear tu primer personaje
+                <Link className='m-4 text-sky-500 relative group' href="/personajes/create">Hazme click para crear tu primer personaje
                     <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                     <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-                </a><br/></p>
+                </Link><br/></p>
         </div>
     )
 

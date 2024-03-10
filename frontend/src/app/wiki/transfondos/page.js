@@ -1,18 +1,14 @@
 "use client"
 
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react";
 import Link from 'next/link';
 
 export default function Transfondos() {
-    const router = useRouter()
     const [data, SetData] = useState({})
     const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL+'/api/transfondos', {
-            credentials: 'include',
-        })
+        fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL+'/api/transfondos')
           .then((res) => res.json())
           .then((data) => {
             SetData(data)
