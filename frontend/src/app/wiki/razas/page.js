@@ -50,7 +50,7 @@ export default function Razas() {
                         <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-12 p-4'>
                         {item.virtudes.map(virtud => {
                             return (
-                                <div key={virtud.id} className="flex flex-col items-center bg-zinc-800 border border-zinc-900 rounded-lg shadow md:flex-row md:max-w-lg hover:bg-zinc-800">
+                                <div key={virtud.id} className="flex flex-col items-center bg-bg-950 border border-sky-800 rounded-lg shadow md:flex-row md:max-w-lg hover:bg-bg-950">
                                     <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-1/3 md:rounded-none md:rounded-s-lg" src={"/iconos_razas/virtudes/"+virtud.imagen} alt=""/>
                                     <div className="flex flex-col justify-between p-4 leading-normal">
                                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">{virtud.nombre}</h5>
@@ -61,7 +61,7 @@ export default function Razas() {
                         })}
                         {item.defectos.map(defecto => {
                             return (
-                                <div key={defecto.id} className="flex flex-col items-center bg-zinc-800 border border-zinc-900 rounded-lg shadow md:flex-row md:max-w-lg hover:bg-zinc-800">
+                                <div key={defecto.id} className="flex flex-col items-center bg-bg-950 border border-sky-800 rounded-lg shadow md:flex-row md:max-w-lg hover:bg-bg-950">
                                     <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-1/3 md:rounded-none md:rounded-s-lg" src={"/iconos_razas/defectos/"+defecto.imagen} alt=""/>
                                     <div className="flex flex-col justify-between p-4 leading-normal">
                                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">{defecto.nombre}</h5>
