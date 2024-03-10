@@ -22,7 +22,7 @@ const Login = () => {
     }
 
     return (
-        <form onSubmit={submit} className='max-w-screen-md mx-auto bg-zinc-800 z-0'>
+        <form onSubmit={submit} className='max-w-screen-md mx-auto bg-bg-950 z-0'>
             <div className='m-4 align-middle justify-center items-center pb-4'>
                 <h1 className="text-xl font-bold mt-4 mb-4 pt-2 text-white">Inicio de sesión</h1>
                 <p className='m-4 text-white'>Nombre de usuario:</p>
@@ -36,12 +36,12 @@ const Login = () => {
 
                 <button className="w-full mt-4 mb-4 group relative text-white" type="submit">
                     Iniciar sesión
-                    <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-                    <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
+                    <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-700 group-hover:w-1/2 group-hover:transition-all"></span>
+                    <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-700 group-hover:w-1/2 group-hover:transition-all"></span>
                 </button>
-                <Link className='m-4 text-sky-500 relative group' href="/register">¿No tienes una cuenta? Hazme click
-                    <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-                    <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
+                <Link className='m-4 relative group' href="/register">¿No tienes una cuenta? Hazme click
+                    <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-700 group-hover:w-1/2 group-hover:transition-all"></span>
+                    <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-700 group-hover:w-1/2 group-hover:transition-all"></span>
                 </Link><br/>
             </div>
         </form>

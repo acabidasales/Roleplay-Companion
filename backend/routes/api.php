@@ -36,12 +36,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::group(['middleware' => ['cors']], function () {
         Route::apiResource('/personajes', PersonajeController::class);
+        Route::apiResource('/campanas', CampañaController::class)->only(['index', 'show']);
     });
 });
 
 Route::apiResource('/alineamientos', AlineamientoController::class)->only(['index', 'show']);
-
-Route::apiResource('/campanas', CampañaController::class)->only(['index', 'show']);
 
 Route::apiResource('/clases', ClaseController::class)->only(['index', 'show']);
 

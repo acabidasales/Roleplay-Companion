@@ -13,25 +13,18 @@ export default function User_navbar(user, auth) {
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
         })
-
+        localStorage.removeItem('auth');
         await location.reload();
     }
     let menu;
 
     if (user.auth != true) {
         menu = (
-            <div>
                 <Link href='/login'>
-                    <div className='absolute flex justify-center mr-16 max-w-48 mt-auto mb-auto top-2 right-0 text-white'>
+                    <div className='absolute flex w-full justify-center text-lg mr-16 my-auto top-3 right-0 text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-600 hover:bg-opacity-20 p-2 transition-all'>
                         Login
                     </div>
                 </Link>
-                <Link href='/register'>
-                    <div className='absolute flex justify-center mr-16 max-w-48 mt-auto mb-auto top-10 right-0 text-white'>
-                        Register
-                    </div>
-                </Link>
-            </div>
         )
     } else {
         menu = (
@@ -47,7 +40,7 @@ export default function User_navbar(user, auth) {
     }
 
   return (
-        <div className="absolute z-50 right-0 top-0">
+        <div className="absolute z-50 right-0 top-0 w-24 h-45">
             {menu}
         </div>
   );
