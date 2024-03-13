@@ -40,7 +40,7 @@ export default function Clases() {
                 {data.map(data => 
                     <div key={data.id}>
                         <hr className="h-px my-8 bg-sky-600 border-0"></hr>
-                        <p className="text-3xl font-extrabold text-white text-center">{data.nombre}</p><img src={"/iconos_clases/"+data.imagen} className='mx-auto lg:w-[125px]'/>
+                        <p className="text-3xl font-extrabold text-white text-center">{data.nombre}</p><img alt={"clase "+data.id} src={"/iconos_clases/"+data.imagen} className='mx-auto lg:w-[125px]'/>
                         <p className="text-zinc-200 text-center mt-8">{data.descripcion}</p>
                     </div>
                 )}

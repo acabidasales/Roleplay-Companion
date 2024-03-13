@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState, useRef } from "react";
 import {useRouter} from 'next/navigation';
 
-export default function campaña_create() {
+export default function Campaña_create() {
     const router = useRouter()
     const firstRender = useRef(true);
     const [userstate, setUserstate] = useState('')
@@ -19,14 +19,6 @@ export default function campaña_create() {
     useEffect(() => {
         setUserstate(localStorage.getItem('auth'))
         setUser(localStorage.getItem('user'))
-    }, [])
-
-    useEffect(() => {
-        if (firstRender.current) {
-            firstRender.current = false;
-            return;
-        }
-        validateForm()
     }, [])
 
     const validateForm = () => {
@@ -51,6 +43,14 @@ export default function campaña_create() {
             setBstate("submit")
         }
     };
+
+    useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false;
+            return;
+        }
+        validateForm()
+    }, [])
 
     const create = () => {
         const data_create = {
