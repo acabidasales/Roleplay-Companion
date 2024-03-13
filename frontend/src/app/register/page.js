@@ -26,7 +26,7 @@ const Register = () => {
     return (
             <form onSubmit={submit} className='max-w-screen-md mx-auto bg-bg-950 z-0'>
                 <div className='m-4 align-middle justify-center items-center pb-4'>
-                    <h1 className="text-xl font-bold mt-4 mb-4 pt-2 text-white">Registro</h1>
+                    <h1 className="text-2xl font-bold mt-4 mb-4 pt-2 text-white">Registro</h1>
                     <p className='m-4 text-white'>Nombre de usuario:</p>
                     <input className="form-control text-black ml-4" placeholder="Username" required
                         onChange={e => setUsername(e.target.value)}

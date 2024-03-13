@@ -21,7 +21,7 @@ export default function User_navbar(user, auth) {
     if (user.auth != true) {
         menu = (
                 <Link href='/login'>
-                    <div className='absolute flex w-full justify-center text-lg mr-8 my-auto top-3 right-0 text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-600 hover:bg-opacity-20 p-2 transition-all'>
+                    <div className='absolute flex w-full justify-center text-lg mr-8 my-auto top-3 right-0 text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-600 p-2 transition-all'>
                         Login
                     </div>
                 </Link>

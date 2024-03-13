@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function Personajes() {
 
     return (
-        <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-3 z-0'>
-            <h2 className='text-xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Wiki</h2>
+        <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 mt-4 p-6 rounded-3xl z-0'>
+            <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Wiki</h2>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 p-4'>
                 <Link href="/wiki/alineamientos" className="block max-w-scre p-6 bg-bg-950 border border-sky-700 rounded-lg shadow hover:bg-sky-800 transition-all">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Alineamientos</h5>

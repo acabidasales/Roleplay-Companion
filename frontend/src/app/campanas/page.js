@@ -40,7 +40,7 @@ export default function Campañas() {
 
     return (
         <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 mt-4 p-6 rounded-3xl z-0'>
-            <h2 className='text-xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Campañas</h2>
+            <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Campañas</h2>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-12 p-4'>
                 {data_campañas.map(data => 
                     <a key={data.id} href={"/campañas/"+data.id} className="relative items-center bg-bg-950 border border-sky-800 rounded-lg shadow md:flex-row md:max-w-2xl transition-all hover:bg-sky-800">

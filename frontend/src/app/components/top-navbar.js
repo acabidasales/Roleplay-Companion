@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import User_navbar from "./top-navbar-user";
 import "../globals.css";
@@ -35,7 +36,7 @@ export default function Top_navbar() {
       <div className='relative inline-flex w-screen h-full items-center'>
         <Link href='/' className="justify-start">
           <div className='justify-start ml-4'>
-            <img className="w-1/4 max-w-[140px] min-w-[50px] h-[50px] mx-4" src="/logo.png" />
+            <Image className="mx-8" width="60" height="60" src="/logo.png" />
           </div>
         </Link>
         <Navbar />

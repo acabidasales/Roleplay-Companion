@@ -23,7 +23,7 @@ export default function Transfondos() {
     )
 
     return (
-        <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-12 z-0 mt-4'>
+        <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 mt-4 p-6 rounded-3xl z-0'>
             <div className='flex w-full relative'>
                 <h2 className='text-xl font-bold mt-4 mb-4 ml-4 pt-2 text-white flex-1'>Transfondos</h2>
                 <Link href="/wiki" className="relative group flex float-end">
