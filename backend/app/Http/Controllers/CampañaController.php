@@ -38,9 +38,9 @@ class CampañaController extends Controller
     {
         $campaña = new Campaña();
         $campaña->nombre = $request->nombre;
+        $campaña->imagen = $request->imagen;
         $campaña->descripcion = $request->descripcion;
-        $campaña->estado = $request->estado;
-        // Continúa asignando los campos necesarios
+        $campaña->propietario = $request->propietario;
         $campaña->save();
 
         return response()->json($campaña, 201);

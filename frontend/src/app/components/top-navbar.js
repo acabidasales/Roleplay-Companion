@@ -24,6 +24,7 @@ export default function Top_navbar() {
           setUser(content.username);
           setAuth(true);
           localStorage.setItem('auth', content.username);
+          localStorage.setItem('user', content.id)
         } catch (e) {
           setAuth(false);
         }
@@ -36,7 +37,7 @@ export default function Top_navbar() {
       <div className='relative inline-flex w-screen h-full items-center'>
         <Link href='/' className="justify-start">
           <div className='justify-start ml-4'>
-            <Image className="mx-8" width="60" height="60" src="/logo.png" />
+            <Image className="mx-8" width="60" height="60" alt="logo" src="/logo.png" />
           </div>
         </Link>
         <Navbar />

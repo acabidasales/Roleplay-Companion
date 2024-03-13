@@ -13,7 +13,6 @@ export default function Campañas() {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             SetData_Campañas(data)
             setLoading(false)
           })
@@ -41,6 +40,11 @@ export default function Campañas() {
     return (
         <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 mt-4 p-6 rounded-3xl z-0'>
             <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Campañas</h2>
+            <Link href='/campanas/create' className='flex align-middle pl-4 pr-4'>
+                <div className='flex w-2/12 justify-center text-lg my-auto text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-800 p-2 transition-all'>
+                    Crear campaña
+                </div>
+            </Link>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-12 p-4'>
                 {data_campañas.map(data => 
                     <a key={data.id} href={"/campañas/"+data.id} className="relative items-center bg-bg-950 border border-sky-800 rounded-lg shadow md:flex-row md:max-w-2xl transition-all hover:bg-sky-800">

@@ -9,7 +9,7 @@ class Campaña extends Model
 {
     protected $table = 'campañas';
 
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
         'nombre',

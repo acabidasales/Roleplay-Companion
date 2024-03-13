@@ -41,7 +41,7 @@ export default function Personajes() {
     return (
         <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 mt-4 p-6 rounded-3xl z-0'>
             <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Tus personajes</h2>
-            <Link href='/personajes' className='flex align-middle p-4'>
+            <Link href='/personajes' className='flex align-middle pl-4 pr-4'>
                 <div className='flex w-2/12 justify-center text-lg my-auto text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-800 p-2 transition-all'>
                     Crear personaje
                 </div>
