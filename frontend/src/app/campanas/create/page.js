@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState, useRef } from "react";
-import {useRouter} from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function Campaña_create() {
     const router = useRouter()
@@ -14,7 +14,6 @@ export default function Campaña_create() {
     const [imagen, setImagen] = useState('')
     const [descripcion, setDescripcion] = useState('')
     const [errors, setErrors] = useState({});
-    const [isFormValid, setIsFormValid] = useState(false);
 
     useEffect(() => {
         setUserstate(localStorage.getItem('auth'))
@@ -24,23 +23,21 @@ export default function Campaña_create() {
     const validateForm = () => {
         let errors = {};
 
-        if (!nombre) {
+        if (nombre === "") {
             errors.nombre = 'Es necesario un nombre.';
         }
 
-        if (!imagen) {
+        if (imagen === "") {
             errors.imagen = 'Imagen necesaria.';
         }
 
-        if (!descripcion) {
+        if (descripcion === "") {
             errors.descripcion = 'Descripción necesaria.';
         }
 
         setErrors(errors);
-        setIsFormValid(Object.keys(errors).length === 0);
-        console.log(isFormValid);
-        if (Object.keys(errors).lengh === 0) {
-            setBstate("submit")
+        if (Object.keys(errors).length === 0) {
+            setBstate("submit");
         }
     };
 
@@ -52,7 +49,9 @@ export default function Campaña_create() {
         validateForm()
     }, [])
 
-    const create = () => {
+    const submitForm = async (event) => {
+        event.preventDefault()
+
         const data_create = {
             nombre: nombre,
             imagen: imagen,
@@ -60,17 +59,23 @@ export default function Campaña_create() {
             propietario: user
         }
 
-        if (isFormValid) {
-            fetch("http://localhost:8000/api/campanas", {
-                method: "POST"
-            }).then((res) => res.json())
-                .then((data) => {
-                    router.push("/campanas")
-                })
-        }
+        const JSONdata = JSON.stringify(data_create);
+
+        console.log(JSONdata);
+
+        fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/campanas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                credentials: 'include',
+            },
+            body: JSONdata,
+        });
+
+        router.push("/campanas")
     };
 
-    if (userstate === null) return (
+    if (!userstate) return (
         <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-3 z-0'>
             <p className="mt-4 mb-4 ml-4 pt-2 pb-2 text-center w-full">Debes estar registrado para crear una campaña. Si no estas registrado,
                 <Link className='m-4 text-sky-500 relative group' href="/register">Hazme click
@@ -83,39 +88,41 @@ export default function Campaña_create() {
     return (
         <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 mt-4 p-6 rounded-3xl z-0'>
             <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Crear Campaña</h2>
-            <form onSubmit={create} className='p-4 w-full'>
-                <div>
-                    <label className='text-lg p-4 text-white dark:text-white'>Nombre de la campaña</label><br />
+            <form onSubmit={submitForm} className='p-4 flex flex-col justify-center items-center'>
+                <div className='w-2/3 justify-center items-center flex flex-col'>
+                    <label className='text-lg p-4 text-white dark:text-white w-full'>Nombre de la campaña: {errors.nombre && <p className="text-red-600 float-right">{errors.nombre}</p>}</label><br />
                     <input
                         type="text"
+                        id="nombre"
                         name="nombre"
                         placeholder='Nombre'
-                        className='m-4 text-black dark:text-black'
+                        className='m-4 text-black dark:text-black w-3/4 rounded-lg'
                         value={nombre || ''}
                         onChange={(e) => setNombre(e.target.value)}
-                    />{errors.nombre && <div className="error">{errors.nombre}</div>}
+                    />
                 </div><br />
-                <div>
-                    <label className='text-lg p-4 text-white dark:text-white'>Imagen de la campaña</label><br />
+                <div className='w-2/3 justify-center items-center flex flex-col'>
+                    <label className='text-lg p-4 text-white dark:text-white w-full'>Imagen de la campaña: {errors.imagen && <p className="text-red-600 float-right">{errors.imagen}</p>}</label><br />
                     <input
                         type="text"
                         name="imagen"
                         placeholder='Nombre de la imagen'
-                        className='m-4 text-black dark:text-black'
+                        className='m-4 text-black dark:text-black w-3/4 rounded-lg'
                         value={imagen || ''}
                         onChange={(e) => setImagen(e.target.value)}
-                    />{errors.imagen && <div className="error">{errors.imagen}</div>}
+                    />
                 </div>
-                <div>
-                    <label className='text-lg p-4 text-white dark:text-white'>Descripción de la campaña</label><br />
+                <div className='w-2/3 justify-center items-center flex flex-col'>
+                    <label className='text-lg p-4 text-white dark:text-white w-full'>Descripción de la campaña: {errors.descripcion && <p className="text-red-600 float-right">{errors.descripcion}</p>}</label><br />
                     <textarea
                         rows="4"
                         cols="50"
+                        placeholder='Describe tu historia'
                         name="descripcion"
-                        className='m-4 text-black dark:text-black'
+                        className='m-4 text-black dark:text-black w-3/4 rounded-lg'
                         value={descripcion || ''}
                         onChange={(e) => setDescripcion(e.target.value)}
-                    />{errors.descripcion && <div className="error">{errors.descripcion}</div>}
+                    />
                 </div>
                 <button
                     type={bstate}

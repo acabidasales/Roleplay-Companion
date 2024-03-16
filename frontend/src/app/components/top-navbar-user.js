@@ -14,6 +14,7 @@ export default function User_navbar(user, auth) {
             credentials: 'include',
         })
         localStorage.removeItem('auth');
+        localStorage.removeItem('user');
         await location.reload();
     }
     let menu;
