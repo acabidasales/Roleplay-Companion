@@ -41,7 +41,7 @@ class PersonajeController extends Controller
         ]);
 
         $personaje = new Personaje([
-            'usuario_propietario' => $usuario->id,
+            'usuario_propietario' => $request->usuario,
             'nombre' => $request->nombre,
             'id_raza' => $request->id_raza,
             'id_clase' => $request->id_clase,

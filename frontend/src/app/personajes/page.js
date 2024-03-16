@@ -13,7 +13,6 @@ export default function Personajes() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 SetData_Personajes(data)
                 setLoading(false)
             })

@@ -34,10 +34,12 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::group(['middleware' => ['cors']], function () {
+        Route::apiResource('/personajes', PersonajeController::class);
+    });
 });
 
 Route::group(['middleware' => ['cors']], function () {
-    Route::apiResource('/personajes', PersonajeController::class);
     Route::apiResource('/campanas', CampañaController::class);
 });
 

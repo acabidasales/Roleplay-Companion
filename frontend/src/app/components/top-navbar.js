@@ -33,7 +33,7 @@ export default function Top_navbar() {
   }, []);
 
   return (
-    <nav id="navbar-hero" className="sticky top-0 bg-bg-950 lg:h-[70px] md:h-[70px] sm:h-[70px] h-[70px] z-50">
+    <nav id="navbar-hero" className="sticky top-0 bg-bg-950 lg:h-[70px] md:h-[70px] sm:h-[70px] h-[70px] z-50 shadow-sky-950 shadow-lg">
       <div className='relative inline-flex w-screen h-full items-center'>
         <Link href='/' className="justify-start">
           <div className='justify-start ml-4'>
