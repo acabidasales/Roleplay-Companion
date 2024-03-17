@@ -88,7 +88,7 @@ class CampañaController extends Controller
 
         $campaña->nombre = $request->nombre;
         $campaña->descripcion = $request->descripcion;
-        $campaña->estado = $request->estado;
+        $campaña->imagen = $request->imagen;
         // Continúa actualizando los campos necesarios
         $campaña->save();
 

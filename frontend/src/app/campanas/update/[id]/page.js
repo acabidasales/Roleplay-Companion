@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from 'next/navigation';
 
-export default function Campaña_create() {
+export default function Campaña_update(id) {
     const router = useRouter()
     const firstRender = useRef(true);
     const [userstate, setUserstate] = useState('')
@@ -14,10 +14,26 @@ export default function Campaña_create() {
     const [imagen, setImagen] = useState('')
     const [descripcion, setDescripcion] = useState('')
     const [errors, setErrors] = useState({});
+    const [data_campañas, SetData_Campañas] = useState({})
+    const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
         setUserstate(localStorage.getItem('auth'))
         setUser(localStorage.getItem('user'))
+    }, [])
+
+    useEffect(() => {
+        fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/campanas/' + id.params.id, {
+            credentials: 'include',
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                SetData_Campañas(data)
+                setNombre(data.nombre)
+                setImagen(data.imagen)
+                setDescripcion(data.descripcion)
+                setLoading(false)
+            })
     }, [])
 
     const validateForm = () => {
@@ -52,17 +68,18 @@ export default function Campaña_create() {
     const submitForm = async (event) => {
         event.preventDefault()
 
-        const data_create = {
+        const data_update = {
+            id: data_campañas,
             nombre: nombre,
             imagen: imagen,
             descripcion: descripcion,
             propietario: user
         }
 
-        const JSONdata = JSON.stringify(data_create);
+        const JSONdata = JSON.stringify(data_update);
 
-        await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/campanas', {
-            method: 'POST',
+        await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/campanas/'+ id.params.id, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 credentials: 'include',
@@ -83,9 +100,15 @@ export default function Campaña_create() {
         </div>
     )
 
+    if (isLoading) return (
+        <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-3 z-0'>
+            <p className="mt-4 mb-4 ml-4 pt-2 pb-2 text-center w-full">Cargando...</p>
+        </div>
+    )
+
     return (
         <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 mt-4 p-6 rounded-3xl z-0'>
-            <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Crear Campaña</h2>
+            <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Modificar Campaña</h2>
             <form onSubmit={submitForm} className='p-4 flex flex-col justify-center items-center'>
                 <div className='w-2/3 justify-center items-center flex flex-col'>
                     <label className='text-lg p-4 text-white dark:text-white w-full'>Nombre de la campaña: {errors.nombre && <p className="text-red-600 float-right">{errors.nombre}</p>}</label><br />
@@ -127,7 +150,7 @@ export default function Campaña_create() {
                     className='flex w-1/12 justify-center text-lg my-auto text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-800 p-2 transition-all'
                     onClick={validateForm}
                 >
-                    Crear
+                    Modificar
                 </button>
             </form>
         </div>
