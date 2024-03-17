@@ -55,7 +55,7 @@ export default function Personajes_Read(id) {
 
     return (
         <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 mt-4 p-6 rounded-3xl z-0'>
-            <Link href='/campanas' className='flex align-middle pl-4 pr-4'>
+            <Link href='/personajes' className='flex align-middle pl-4 pr-4'>
                 <div className='flex justify-center text-lg my-auto text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-800 p-2 transition-all'>
                     Volver
                 </div>
