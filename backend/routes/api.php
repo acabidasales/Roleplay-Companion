@@ -43,6 +43,8 @@ Route::group(['middleware' => ['cors']], function () {
     Route::apiResource('/campanas', CampañaController::class);
 });
 
+Route::get('/personajes/filtrarPorCampana/{idCampaña}', [PersonajeController::class, 'filtrarPorCampana']);
+
 Route::apiResource('/alineamientos', AlineamientoController::class)->only(['index', 'show']);
 
 Route::apiResource('/clases', ClaseController::class)->only(['index', 'show']);

@@ -8,19 +8,18 @@ export default function Alineamientos() {
     const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL+'/api/alineamientos', {
+        fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/alineamientos', {
             credentials: 'include',
         })
-          .then((res) => res.json())
-          .then((data) => {
-            SetData(data)
-            setLoading(false)
-          })
-      }, [])
+            .then((res) => res.json())
+            .then((data) => {
+                SetData(data)
+                setLoading(false)
+            })
+    }, [])
 
     if (isLoading) return (
-        <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-3 z-0'>
-            <p className="mt-4 mb-4 ml-4 pt-2 pb-2 text-center w-full">Cargando...</p>
+        <div className='transition-all'>
         </div>
     )
 
@@ -37,13 +36,14 @@ export default function Alineamientos() {
                     <span className="absolute bottom-0 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                 </Link>
             </div>
-                {data.map(data => 
-                    <div key={data.id}>
-                        <hr className="h-px my-8 bg-sky-600 border-0"></hr>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 p-4'>
+                {data.map(data =>
+                    <div key={data.id} className="bg-bg-950 border border-sky-800 rounded-lg shadow md:flex-row md:max-w-lg transition-all p-8">
                         <p className="text-3xl font-extrabold text-white text-center">{data.alineamiento}</p>
                         <p className="text-zinc-200 text-center mt-8">{data.descripción}</p>
                     </div>
                 )}
+            </div>
         </div>
     );
 }

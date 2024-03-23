@@ -35,21 +35,7 @@ export default function Personajes_Read(id) {
 
 
     if (isLoading) return (
-        <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-3 z-0'>
-            <p className="mt-4 mb-4 ml-4 pt-2 pb-2 text-center w-full">Debes estar registrado para acceder a los personajes. Si no estas registrado,
-                <Link className='m-4 text-sky-500 relative group' href="/register">Hazme click
-                    <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-                    <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-                </Link><br /></p>
-        </div>
-    )
-    if (data_personajes.length == 0) return (
-        <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-3 z-0'>
-            <p className="mt-4 mb-4 ml-4 pt-2 pb-2 text-center w-full"> ¡Vaya! Parece que no tienes ningún personaje.
-                <Link className='m-4 text-sky-500 relative group' href="/personajes/create">Hazme click para crear tu primer personaje
-                    <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-                    <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
-                </Link><br /></p>
+        <div className='transition-all'>
         </div>
     )
 

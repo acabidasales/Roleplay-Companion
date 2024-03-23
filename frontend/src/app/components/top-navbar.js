@@ -7,6 +7,7 @@ import User_navbar from "./top-navbar-user";
 import "../globals.css";
 import 'boxicons/css/boxicons.min.css';
 import Navbar from "./navbar";
+import { deleteCookie } from 'cookies-next';
 
 export default function Top_navbar() {
   const [user, setUser] = useState('');
@@ -27,6 +28,9 @@ export default function Top_navbar() {
           localStorage.setItem('user', content.id)
         } catch (e) {
           setAuth(false);
+          localStorage.removeItem('auth');
+          localStorage.removeItem('user');
+          deleteCookie("auth");
         }
       }
     )();

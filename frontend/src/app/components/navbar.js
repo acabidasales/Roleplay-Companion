@@ -2,15 +2,31 @@
 import Link from "next/link";
 import "../globals.css";
 import 'boxicons/css/boxicons.min.css'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect } from "react";
+import { getCookie } from 'cookies-next';
 
 export default function Navbar() {
     const location = usePathname();
+    const router = useRouter();
     const [url, setUrl] = useState("");
 
     useEffect(() => {
         setUrl(location)
+        if(location.startsWith("/personajes")) {
+            const hasCookie = getCookie('auth')
+            if (hasCookie === undefined) {
+                alert("Debes estar registrado para poder acceder a personajes")
+                router.push("/")
+            }
+        }
+        if(location.startsWith("/campanas")) {
+            const hasCookie = getCookie('auth')
+            if (hasCookie === undefined) {
+                alert("Debes estar registrado para poder acceder a camapña")
+                router.push("/")
+            }
+        }
     }, [location])
 
 

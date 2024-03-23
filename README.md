@@ -24,5 +24,8 @@
 
 ### Recursos utilizados
 
-[Boxicons](https://boxicons.com/)
-[JWT-auth](https://github.com/tymondesigns/jwt-auth)
+* [Boxicons](https://boxicons.com/)
+* [JWT-auth](https://github.com/tymondesigns/jwt-auth)
+* [iconify.design](https://icon-sets.iconify.design)
+* React-toastify
+* [cookies-next](https://www.npmjs.com/package/cookies-next)

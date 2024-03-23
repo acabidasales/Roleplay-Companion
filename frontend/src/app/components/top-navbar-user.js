@@ -3,6 +3,7 @@
 import Link from "next/link";
 import "../globals.css";
 import 'boxicons/css/boxicons.min.css';
+import { deleteCookie } from 'cookies-next';
 
 
 export default function User_navbar(user, auth) {
@@ -15,6 +16,7 @@ export default function User_navbar(user, auth) {
         })
         localStorage.removeItem('auth');
         localStorage.removeItem('user');
+        deleteCookie("auth");
         await location.reload();
     }
     let menu;

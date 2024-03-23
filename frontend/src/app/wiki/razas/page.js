@@ -20,8 +20,7 @@ export default function Razas() {
       }, [])
 
     if (isLoading) return (
-        <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-3 z-0'>
-            <p className="mt-4 mb-4 ml-4 pt-2 pb-2 text-center w-full">Cargando...</p>
+        <div className='transition-all'>
         </div>
     )
 

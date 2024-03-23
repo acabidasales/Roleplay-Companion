@@ -2,13 +2,8 @@
 import RevealOnScroll from "@/app/components/reveal";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 export default function Inicio() {
-    const [userstate, setUserstate] = useState('')
-    useEffect(() => {
-        setUserstate(localStorage.getItem('auth'))
-    }, [])
     return (
         <div className='lg:max-w-screen-2xl md:max-w-screen-xl sm:max-w-screen-lg transition-all mx-auto rounded pl-3 pr-3 pb-32 pt-16 z-0'>
             <section className="text-white bg-bg-950 mt-8 rounded-3xl z-10 h-full">
@@ -19,9 +14,6 @@ export default function Inicio() {
                         </div>
                         <p className="mb-8 leading-relaxed text-center">Crea, aprende, juega y diviertete con tus propias historias épicas. Conviertete en el mayor heroe conocido o en el villano más temido, todo al alcance de tu mano</p>
                         <div className="flex justify-center mx-auto">
-                            {userstate === null ? (
-                                <Link href="/login" className="inline-flex text-white bg-sky-700 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded-xl text-lg">Iniciar sesión</Link>
-                            ) : ""}
                             <Link href="#scroll" className="ml-4 inline-flex text-white bg-sky-700 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded-xl text-lg">Ver más</Link>
                         </div>
                     </div>

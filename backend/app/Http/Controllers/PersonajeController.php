@@ -83,8 +83,8 @@ class PersonajeController extends Controller
     {
         $userId = $request->user()->id;
         $personajes = Personaje::where('usuario_propietario', $userId)
-        ->with('raza', 'clase', 'campaña', 'alineamiento', 'transfondo', 'competenciasEquipamiento', 'competenciasHabilidades')
-        ->get();
+            ->with('raza', 'clase', 'campaña', 'alineamiento', 'transfondo', 'competenciasEquipamiento', 'competenciasHabilidades')
+            ->get();
 
         return response()->json($personajes);
     }
@@ -163,5 +163,16 @@ class PersonajeController extends Controller
         $personaje->delete();
 
         return response()->json(['message' => 'Personaje eliminado correctamente']);
+    }
+
+    public function filtrarPorCampana($id_campaña)
+    {
+        $personaje = Personaje::with('raza', 'clase', 'campaña', 'alineamiento', 'transfondo', 'competenciasEquipamiento', 'competenciasHabilidades')->where('id_campaña', $id_campaña)->get();;
+
+        if (!$personaje) {
+            return response()->json(['message' => 'Sin personajes'], 404);
+        }
+
+        return response()->json($personaje);
     }
 }

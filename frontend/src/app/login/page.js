@@ -1,6 +1,7 @@
 "use client"
 import React, {useState} from 'react';
 import Link from 'next/link';
+import { setCookie } from 'cookies-next';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -17,7 +18,7 @@ const Login = () => {
                 password
             })
         });
-
+        setCookie('auth', true)
         window.location.href = "/";
     }
 
