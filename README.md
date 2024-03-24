@@ -1,3 +1,7 @@
+## Roleplay companion
+
+Tu acompañante de rol, te permite gestionar tus campañas y personajes de forma fácil y rápida. Accede a cualquier información al instante a través de la wiki.
+
 ## Tecnologias
 
 ### Frontend
