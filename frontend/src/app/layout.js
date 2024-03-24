@@ -1,7 +1,6 @@
 import "./globals.css";
 import 'boxicons/css/boxicons.min.css'
 import Top_navbar from "./components/top-navbar";
-import Navbar from "./components/navbar";
 
 export const metadata = {
   title: "Roleplay Companion",

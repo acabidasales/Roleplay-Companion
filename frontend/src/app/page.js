@@ -21,9 +21,8 @@ export default function Inicio() {
                         <Image width={750} height={750} className="object-cover object-center rounded-xl" alt="hero" src="/hero.png" />
                     </div>
                 </div>
-
-                <div id="scroll"></div>
             </section>
+            <div id="scroll"></div>
             <RevealOnScroll>
                 <div className='lg:max-w-screen-2xl md:max-w-screen-xl sm:max-w-screen-lg transition-all mx-auto relative mt-72 h-[600px] w-full flex flex-row justify-center items-center gap-3'>
                     <div className="bg-bg-950 rounded-3xl p-8 w-[45%] h-full max-h-[600px]">
