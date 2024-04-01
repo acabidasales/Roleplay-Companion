@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class CompetenciaHabilidad extends Model
 {
-    protected $table = 'competencia_habilidades';
+    protected $table = 'personaje_competencia_habilidad';
 
     public $timestamps = false;
+
+    protected $fillable = ['personaje_id', 'competencia_habilidad_id'];
 
     public function personajes()
     {

@@ -15,7 +15,6 @@ export default function Razas() {
           .then((data) => {
             SetData(data)
             setLoading(false)
-            console.log(data);
           })
       }, [])
 

@@ -34,13 +34,20 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::group(['middleware' => ['cors']], function () {
-        Route::apiResource('/personajes', PersonajeController::class);
+        Route::get('/personajes',[ PersonajeController::class, 'index']);
     });
 });
 
 Route::group(['middleware' => ['cors']], function () {
     Route::apiResource('/campanas', CampañaController::class);
 });
+
+Route::post('/personajes/create', [PersonajeController::class, 'store']);
+Route::put('/personajes/update/{id}', [PersonajeController::class, 'update']);
+Route::delete('/personajes/delete/{id}', [PersonajeController::class, 'destroy']);
+
+Route::post('/personaje/competencias-equipamiento', [CompetenciaEquipamientoController::class, 'store']);
+Route::post('/personaje/competencias-habilidad', [CompetenciaHabilidadesController::class, 'store']);
 
 Route::get('/personajes/filtrarPorCampana/{idCampaña}', [PersonajeController::class, 'filtrarPorCampana']);
 

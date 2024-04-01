@@ -17,31 +17,8 @@ class PersonajeController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'id_raza' => 'required|exists:razas,id',
-            'id_clase' => 'required|exists:clases,id',
-            'id_campaña' => 'required|exists:campañas,id',
-            'estado' => 'required|string|max:50',
-            'nivel' => 'required|integer',
-            'imagen' => 'string|nullable|max:255',
-            'car_fuerza' => 'required|integer',
-            'car_destreza' => 'required|integer',
-            'car_constitucion' => 'required|integer',
-            'car_inteligencia' => 'required|integer',
-            'car_sabiduria' => 'required|integer',
-            'car_carisma' => 'required|integer',
-            'id_transfondo' => 'required|exists:transfondos,id',
-            'id_alineamiento' => 'required|exists:alineamientos,id',
-            'apariencia' => 'string|nullable',
-            'edad' => 'string|nullable',
-            'historia' => 'string|nullable',
-            'notas' => 'string|nullable',
-            'puntos_experiencia' => 'integer|nullable',
-        ]);
-
         $personaje = new Personaje([
-            'usuario_propietario' => $request->usuario,
+            'usuario_propietario' => $request->usuario_propietario,
             'nombre' => $request->nombre,
             'id_raza' => $request->id_raza,
             'id_clase' => $request->id_clase,
