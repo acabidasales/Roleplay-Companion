@@ -139,8 +139,9 @@ export default function Campaña_create() {
                         {data.map(item => {
                             return (
                                 <input
+                                    key={item.id_raza}
                                     type="radio"
-                                    name="id_raza"
+                                    name={item.id_raza}
                                     className='m-4 border-sky-800 focus:ring-sky-600'
                                     value={id_raza || ''}
                                     onChange={(e) => setId_raza(e.target.value)}
