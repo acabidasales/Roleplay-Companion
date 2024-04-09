@@ -15,6 +15,7 @@ class CompetenciaHabilidad extends Model
 
     public function personajes()
     {
-        return $this->belongsToMany(Personaje::class, 'personaje_competencia_habilidad', 'id_competencia_habilidad', 'id_personaje');
+        return $this->belongsToMany(Personaje::class, 'personaje_competencia_habilidad')
+                    ->using(PersonajeCompetenciaHabilidad::class);
     }
 }

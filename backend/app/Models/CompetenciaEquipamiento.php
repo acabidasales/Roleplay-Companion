@@ -15,6 +15,7 @@ class CompetenciaEquipamiento extends Model
 
     public function personajes()
     {
-        return $this->belongsToMany(Personaje::class, 'personaje_competencia_equipamiento', 'id_competencia_equipamiento', 'id_personaje');
+        return $this->belongsToMany(Personaje::class, 'personaje_competencia_equipamiento')
+                    ->using(PersonajeCompetenciaEquipamiento::class);
     }
 }

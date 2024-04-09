@@ -60,7 +60,7 @@ class PersonajeController extends Controller
     {
         $userId = $request->user()->id;
         $personajes = Personaje::where('usuario_propietario', $userId)
-            ->with('raza', 'clase', 'campaña', 'alineamiento', 'transfondo', 'competenciasEquipamiento', 'competenciasHabilidades')
+            ->with('raza', 'clase', 'campaña', 'alineamiento', 'transfondo')
             ->get();
 
         return response()->json($personajes);
@@ -68,7 +68,7 @@ class PersonajeController extends Controller
 
     public function show($id)
     {
-        $personaje = Personaje::with('raza', 'clase', 'campaña', 'alineamiento', 'transfondo', 'competenciasEquipamiento', 'competenciasHabilidades')->findOrFail($id);
+        $personaje = Personaje::with(['raza', 'clase', 'campaña', 'alineamiento', 'transfondo'])->findOrFail($id);
 
         if (!$personaje) {
             return response()->json(['message' => 'Personaje no encontrado'], 404);

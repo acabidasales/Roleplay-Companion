@@ -42,6 +42,7 @@ Route::group(['middleware' => ['cors']], function () {
     Route::apiResource('/campanas', CampañaController::class);
 });
 
+Route::get('/personajes/{id}', [PersonajeController::class, 'show']);
 Route::post('/personajes/create', [PersonajeController::class, 'store']);
 Route::put('/personajes/update/{id}', [PersonajeController::class, 'update']);
 Route::delete('/personajes/delete/{id}', [PersonajeController::class, 'destroy']);

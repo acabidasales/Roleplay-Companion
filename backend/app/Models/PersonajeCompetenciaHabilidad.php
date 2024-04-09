@@ -11,6 +11,7 @@ class PersonajeCompetenciaHabilidad extends Pivot
 
     protected $table = 'personaje_competencia_habilidad';
 
+    protected $primaryKey = 'id';
     protected $fillable = [
         'personaje_id',
         'competencia_habilidad_id',
