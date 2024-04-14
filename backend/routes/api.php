@@ -14,6 +14,8 @@ use App\Http\Controllers\PersonajeController;
 use App\Http\Controllers\RazaController;
 use App\Http\Controllers\TransfondoController;
 use App\Http\Controllers\VirtudRazaController;
+use App\Http\Controllers\PersonajeCompetenciaHabilidadController;
+use App\Http\Controllers\PersonajeCompetenciaEquipamientoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +55,9 @@ Route::post('/personaje/competencias-habilidad', [CompetenciaHabilidadesControll
 Route::get('/personajes/filtrarPorCampana/{idCampaña}', [PersonajeController::class, 'filtrarPorCampana']);
 
 Route::apiResource('/alineamientos', AlineamientoController::class)->only(['index', 'show']);
+
+Route::apiResource('/personajes/filtrarPorEquipamiento/{id}', PersonajeCompetenciaEquipamientoController::class)->only(['index']);
+Route::apiResource('/personajes/filtrarPorHabilidades/{id}', PersonajeCompetenciaHabilidadController::class)->only(['index']);
 
 Route::apiResource('/clases', ClaseController::class)->only(['index', 'show']);
 
