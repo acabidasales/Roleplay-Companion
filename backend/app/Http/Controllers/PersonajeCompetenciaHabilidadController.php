@@ -15,4 +15,22 @@ class PersonajeCompetenciaHabilidadController extends Controller
 
         return response()->json($competencias);
     }
+    public function store(Request $request)
+    {
+        $data = $request->all();
+
+        try {
+            foreach ($data as $item) {
+
+                PersonajeCompetenciaHabilidad::create([
+                    'personaje_id' => $item['personaje_id'],
+                    'competencia_habilidad_id' => $item['competencia_habilidad_id'],
+                ]);
+            }
+
+            return response()->json(['message' => 'Competencias de habilidad agregadas exitosamente'], 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }

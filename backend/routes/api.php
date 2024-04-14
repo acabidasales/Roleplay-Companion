@@ -49,15 +49,15 @@ Route::post('/personajes/create', [PersonajeController::class, 'store']);
 Route::put('/personajes/update/{id}', [PersonajeController::class, 'update']);
 Route::delete('/personajes/delete/{id}', [PersonajeController::class, 'destroy']);
 
-Route::post('/personaje/competencias-equipamiento', [CompetenciaEquipamientoController::class, 'store']);
-Route::post('/personaje/competencias-habilidad', [CompetenciaHabilidadesController::class, 'store']);
+Route::post('/personaje/competencias-equipamiento', [PersonajeCompetenciaEquipamientoController::class, 'store']);
+Route::post('/personaje/competencias-habilidad', [PersonajeCompetenciaHabilidadController::class, 'store']);
 
 Route::get('/personajes/filtrarPorCampana/{idCampaña}', [PersonajeController::class, 'filtrarPorCampana']);
 
 Route::apiResource('/alineamientos', AlineamientoController::class)->only(['index', 'show']);
 
-Route::apiResource('/personajes/filtrarPorEquipamiento/{id}', PersonajeCompetenciaEquipamientoController::class)->only(['index']);
-Route::apiResource('/personajes/filtrarPorHabilidades/{id}', PersonajeCompetenciaHabilidadController::class)->only(['index']);
+Route::apiResource('/personajes/filtrarPorEquipamiento/{id}', CompetenciaEquipamientoController::class)->only(['index']);
+Route::apiResource('/personajes/filtrarPorHabilidades/{id}', CompetenciaHabilidadesController::class)->only(['index']);
 
 Route::apiResource('/clases', ClaseController::class)->only(['index', 'show']);
 

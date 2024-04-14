@@ -144,7 +144,7 @@ class PersonajeController extends Controller
 
     public function filtrarPorCampana($id_campaña)
     {
-        $personaje = Personaje::with('raza', 'clase', 'campaña', 'alineamiento', 'transfondo', 'competenciasEquipamiento', 'competenciasHabilidades')->where('id_campaña', $id_campaña)->get();;
+        $personaje = Personaje::with('raza', 'clase', 'campaña', 'alineamiento', 'transfondo')->where('id_campaña', $id_campaña)->get();;
 
         if (!$personaje) {
             return response()->json(['message' => 'Sin personajes'], 404);

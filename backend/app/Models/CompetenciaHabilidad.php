@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CompetenciaHabilidad extends Model
 {
-    protected $table = 'personaje_competencia_habilidad';
+    protected $table = 'competencia_habilidades';
 
     public $timestamps = false;
 

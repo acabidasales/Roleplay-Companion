@@ -35,22 +35,5 @@ class CompetenciaEquipamientoController extends Controller
         }
     }
 
-    public function store(Request $request)
-{
-    $data = $request->all();
 
-    try {
-        foreach ($data as $item) {
-
-            CompetenciaEquipamiento::create([
-                'personaje_id' => $item['personaje_id'],
-                'competencia_equipamiento_id' => $item['competencia_equipamiento_id'],
-            ]);
-        }
-
-        return response()->json(['message' => 'Competencias de equipamiento agregadas exitosamente'], 201);
-    } catch (\Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 500);
-    }
-}
 }
