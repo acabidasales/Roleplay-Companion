@@ -33,3 +33,4 @@ Tu acompañante de rol, te permite gestionar tus campañas y personajes de forma
 * [iconify.design](https://icon-sets.iconify.design)
 * React-toastify
 * [cookies-next](https://www.npmjs.com/package/cookies-next)
+* [Flowbite React](https://flowbite.com/docs/getting-started/next-js/)

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from 'next/navigation';
 
-export default function Campaña_create() {
+export default function Personaje_create() {
     const router = useRouter()
     const firstRender = useRef(true);
     const [userstate, setUserstate] = useState('')
@@ -32,6 +32,7 @@ export default function Campaña_create() {
 
     const [isLoading, setLoading] = useState(true)
     const [data_razas, setData_razas] = useState({})
+    const [data_clases, setData_clases] = useState({})
 
     useEffect(() => {
         setUserstate(localStorage.getItem('auth'))
@@ -47,10 +48,6 @@ export default function Campaña_create() {
 
         if (imagen === "") {
             errors.imagen = 'Imagen necesaria.';
-        }
-
-        if (descripcion === "") {
-            errors.descripcion = 'Descripción necesaria.';
         }
 
         setErrors(errors);
@@ -98,7 +95,15 @@ export default function Campaña_create() {
             .then((res) => res.json())
             .then((data) => {
                 setData_razas(data)
-                setLoading(false)
+                fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/clases', {
+                    credentials: 'include',
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setData_clases(data)
+                        
+                        setLoading(false)
+                    })
             })
     }, [])
 
@@ -119,57 +124,52 @@ export default function Campaña_create() {
 
     return (
         <div className='lg:max-w-screen-2xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 mt-4 p-6 rounded-3xl z-0'>
-            <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Crear Personaje</h2>
-            <form onSubmit={submitForm} className='p-4 flex flex-col col-span-2 justify-center items-center'>
-                <div className="grid grid-cols-2 gap-6 w-full items-center place-items-center">
-                    <div className='w-2/3 justify-center items-center flex flex-col'>
-                        <label className='text-lg p-4 text-white dark:text-white w-full'>Nombre del personaje: {errors.nombre && <p className="text-red-600 float-right">{errors.nombre}</p>}</label><br />
-                        <input
-                            type="text"
-                            id="nombre"
-                            name="nombre"
-                            placeholder='Nombre'
-                            className='m-4 text-black dark:text-black w-3/4 rounded-lg'
-                            value={nombre || ''}
-                            onChange={(e) => setNombre(e.target.value)}
-                        />
+            <div className=' bg-gray-900 p-4 rounded-3xl lg:max-w-screen-xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto'>
+                <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Crear Personaje</h2>
+                <form onSubmit={submitForm} className='p-4 flex flex-col col-span-2 justify-center items-center'>
+                    <div className="lg:grid lg:grid-cols-2 lg:gap-6 md:grid md:grid-cols-2 md:gap-6 w-full items-center place-items-center">
+                        <div className='w-full justify-center items-center flex flex-col'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Nombre del personaje: {errors.nombre && <p className="text-red-600 float-right">{errors.nombre}</p>}</label><br />
+                            <input
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                placeholder='Nombre'
+                                className='m-4 p-1 text-black dark:text-black w-3/4 rounded-lg px-2'
+                                value={nombre || ''}
+                                onChange={(e) => setNombre(e.target.value)}
+                            />
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Raza: {errors.raza && <p className="text-red-600 float-right">{errors.raza}</p>}</label><br />
+                            <select id="raza" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_raza(e.target.value)}>
+                                <option>--- Elige tu raza ---</option>
+                                {data_razas.map(item => {
+                                    return (
+                                        <option
+                                            key={item.id_raza}
+                                            id={item.id_raza}
+                                            name={item.id_raza}
+                                            className='m-4 border-sky-800 text-black focus:ring-sky-600'
+                                            value={id_raza || ''}
+                                        >
+                                        {item.nombre}
+                                        </option>
+                                    )
+                                }
+                                )}
+                            </select>
+                        </div>
                     </div>
-                    <div className='w-2/3 justify-center items-center flex flex-col'>
-                        <label className='text-lg p-4 text-white dark:text-white w-full'>Raza: {errors.raza && <p className="text-red-600 float-right">{errors.raza}</p>}</label><br />
-                        {data.map(item => {
-                            return (
-                                <input
-                                    key={item.id_raza}
-                                    type="radio"
-                                    name={item.id_raza}
-                                    className='m-4 border-sky-800 focus:ring-sky-600'
-                                    value={id_raza || ''}
-                                    onChange={(e) => setId_raza(e.target.value)}
-                                />
-                            )}
-                        )}
-                    </div>
-                    <div className='w-2/3 justify-center items-center flex flex-col'>
-                        <label className='text-lg p-4 text-white dark:text-white w-full'>Descripción de la campaña: {errors.descripcion && <p className="text-red-600 float-right">{errors.descripcion}</p>}</label><br />
-                        <textarea
-                            rows="4"
-                            cols="50"
-                            placeholder='Describe tu historia'
-                            name="descripcion"
-                            className='m-4 text-black dark:text-black w-3/4 rounded-lg'
-                            value={id_clase || ''}
-                            onChange={(e) => setClase(e.target.value)}
-                        />
-                    </div>
-                </div>
-                <button
-                    type={bstate}
-                    className='flex w-1/12 justify-center text-lg my-auto text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-800 p-2 transition-all'
-                    onClick={validateForm}
-                >
-                    Crear
-                </button>
-            </form>
-        </div>
+                    <button
+                        type={bstate}
+                        className='flex w-1/12 justify-center text-lg my-auto text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-800 p-2 transition-all'
+                        onClick={validateForm}
+                    >
+                        Crear
+                    </button>
+                </form >
+            </div>
+        </div >
     );
 }
