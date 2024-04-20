@@ -17,12 +17,12 @@ export default function Personaje_create() {
     const [estado, setEstado] = useState('')
     const [nivel, setNivel] = useState('')
     const [imagen, setImagen] = useState('')
-    const [car_fuerza, setCar_fuerza] = useState('')
-    const [car_destreza, setCar_destreza] = useState('')
-    const [car_constitucion, setCar_constitucion] = useState('')
-    const [car_inteligencia, setCar_inteligencia] = useState('')
-    const [car_sabiduria, setCar_sabiduria] = useState('')
-    const [car_carisma, setCar_carisma] = useState('')
+    const [car_fuerza, setCar_fuerza] = useState(8)
+    const [car_destreza, setCar_destreza] = useState(8)
+    const [car_constitucion, setCar_constitucion] = useState(8)
+    const [car_inteligencia, setCar_inteligencia] = useState(8)
+    const [car_sabiduria, setCar_sabiduria] = useState(8)
+    const [car_carisma, setCar_carisma] = useState(8)
     const [id_transfondo, setId_transfondo] = useState('')
     const [id_alineamiento, setid_alineamiento] = useState('')
     const [apariencia, setApariencia] = useState('')
@@ -107,6 +107,15 @@ export default function Personaje_create() {
                     })
             })
     }, [])
+
+    function takebonif(num) {
+        let bonif = Math.floor((num - 10) / 2);
+        let bonif_obj = {
+            "string": (bonif >= 0 ? "+" : "") + bonif,
+            "int": bonif
+        }
+        return bonif_obj;
+    }
 
     if (!userstate) return (
         <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-3 z-0'>
@@ -200,82 +209,143 @@ export default function Personaje_create() {
                         </div>
                         <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950 col-span-2'>
                             <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Estadisticas:</label><br />
-                            <div className='flex flex-row col-span-6 justify-center items-center px-4'>
-                                <div className='border items-center justify-center text-center border-sky-600 rounded-l-xl'>
+                            <div className='grid grid-cols-3 justify-center items-center px-4 my-4'>
+                                <div className='border items-center justify-center text-center border-sky-800 rounded-tl-xl'>
                                     <label className='text-lg p-4 text-white dark:text-white w-full text-center'>Fuerza</label><br />
+                                    <button onClick={(e) => setCar_fuerza(car_fuerza <= 8 ? car_fuerza : car_fuerza - 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4 rounded-l">
+                                        -
+                                    </button>
                                     <input
                                         type="number"
                                         id="fuerza"
                                         name="fuerza"
                                         placeholder='Fuerza'
-                                        className='m-4 p-1 text-black dark:text-black rounded-lg px-2 w-1/4 text-center'
-                                        value={car_fuerza || '8'}
+                                        min="8"
+                                        className='m-4 p-1 text-black dark:text-black px-2 w-2/12 text-center h-[39px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                                        value={car_fuerza || 8}
                                         onChange={(e) => setCar_fuerza(e.target.value)}
                                     />
+                                    <button onClick={(e) => setCar_fuerza(car_fuerza + 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4  rounded-r">
+                                        +
+                                    </button>
+                                    <p className='font-semibold text-lg'>{takebonif(car_fuerza || 8).string}</p>
                                 </div>
-                                <div className='border items-center justify-center text-center border-sky-600'>
+                                <div className='border items-center justify-center text-center border-sky-800'>
                                     <label className='text-lg p-4 text-white dark:text-white w-full text-center'>Destreza</label><br />
+                                    <button onClick={(e) => setCar_destreza(car_destreza <= 8 ? car_destreza : car_destreza - 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4 rounded-l">
+                                        -
+                                    </button>
                                     <input
                                         type="number"
                                         id="destreza"
                                         name="destreza"
                                         placeholder='Destreza'
-                                        className='m-4 p-1 text-black dark:text-black rounded-lg px-2 w-1/4 text-center'
-                                        value={car_destreza || '8'}
+                                        min="8"
+                                        className='m-4 p-1 text-black dark:text-black px-2 w-2/12 text-center h-[39px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                                        value={car_destreza || 8}
                                         onChange={(e) => setCar_destreza(e.target.value)}
                                     />
+                                    <button onClick={(e) => setCar_destreza(car_destreza + 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4  rounded-r">
+                                        +
+                                    </button>
+                                    <p className='font-semibold text-lg'>{takebonif(car_destreza || 8).string}</p>
                                 </div>
-                                <div className='border items-center justify-center text-center border-sky-600'>
+                                <div className='border items-center justify-center text-center border-sky-800 rounded-tr-xl'>
                                     <label className='text-lg p-4 text-white dark:text-white w-full text-center'>Constitución</label><br />
+                                    <button onClick={(e) => setCar_constitucion(car_constitucion <= 8 ? car_constitucion : car_constitucion - 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4 rounded-l">
+                                        -
+                                    </button>
                                     <input
                                         type="number"
                                         id="constitucion"
                                         name="constitucion"
                                         placeholder='Constitucion'
-                                        className='m-4 p-1 text-black dark:text-black rounded-lg px-2 w-1/4 text-center'
-                                        value={car_constitucion || '8'}
+                                        min="8"
+                                        className='m-4 p-1 text-black dark:text-black px-2 w-2/12 text-center h-[39px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                                        value={car_constitucion || 8}
                                         onChange={(e) => setCar_constitucion(e.target.value)}
                                     />
+                                    <button onClick={(e) => setCar_constitucion(car_constitucion + 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4  rounded-r">
+                                        +
+                                    </button>
+                                    <p className='font-semibold text-lg'>{takebonif(car_constitucion || 8).string}</p>
                                 </div>
-                                <div className='border items-center justify-center text-center border-sky-600'>
+                                <div className='border items-center justify-center text-center border-sky-800 rounded-bl-xl'>
                                     <label className='text-lg p-4 text-white dark:text-white w-full text-center'>Inteligencia</label><br />
+                                    <button onClick={(e) => setCar_inteligencia(car_inteligencia <= 8 ? car_inteligencia : car_inteligencia - 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4 rounded-l">
+                                        -
+                                    </button>
                                     <input
                                         type="number"
                                         id="inteligencia"
                                         name="inteligencia"
                                         placeholder='Inteligencia'
-                                        className='m-4 p-1 text-black dark:text-black rounded-lg px-2 w-1/4 text-center'
-                                        value={car_inteligencia || '8'}
+                                        min="8"
+                                        className='m-4 p-1 text-black dark:text-black px-2 w-2/12 text-center h-[39px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                                        value={car_inteligencia || 8}
                                         onChange={(e) => setCar_inteligencia(e.target.value)}
                                     />
+                                    <button onClick={(e) => setCar_inteligencia(car_inteligencia + 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4  rounded-r">
+                                        +
+                                    </button>
+                                    <p className='font-semibold text-lg'>{takebonif(car_inteligencia || 8).string}</p>
                                 </div>
-                                <div className='border items-center justify-center text-center border-sky-600'>
+                                <div className='border items-center justify-center text-center border-sky-800'>
                                     <label className='text-lg p-4 text-white dark:text-white w-full text-center'>Sabiduría</label><br />
+                                    <button onClick={(e) => setCar_sabiduria(car_sabiduria <= 8 ? car_sabiduria : car_sabiduria - 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4 rounded-l">
+                                        -
+                                    </button>
                                     <input
                                         type="number"
                                         id="sabiduria"
                                         name="sabiduria"
                                         placeholder='Sabiduría'
-                                        className='m-4 p-1 text-black dark:text-black rounded-lg px-2 w-1/4 text-center'
-                                        value={car_sabiduria || '8'}
+                                        min="8"
+                                        className='m-4 p-1 text-black dark:text-black px-2 w-2/12 text-center h-[39px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                                        value={car_sabiduria || 8}
                                         onChange={(e) => setCar_sabiduria(e.target.value)}
                                     />
+                                    <button onClick={(e) => setCar_sabiduria(car_sabiduria + 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4  rounded-r">
+                                        +
+                                    </button>
+                                    <p className='font-semibold text-lg'>{takebonif(car_sabiduria || 8).string}</p>
                                 </div>
-                                <div className='border items-center justify-center text-center border-sky-600 rounded-r-3xl'>
+                                <div className='border items-center justify-center text-center border-sky-800 rounded-br-3xl'>
                                     <label className='text-lg p-4 text-white dark:text-white w-full text-center'>Carisma</label><br />
+                                    <button onClick={(e) => setCar_carisma(car_carisma <= 8 ? car_carisma : car_carisma - 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4 rounded-l">
+                                        -
+                                    </button>
                                     <input
                                         type="number"
                                         id="carisma"
                                         name="carisma"
                                         placeholder='Carisma'
-                                        className='m-4 p-1 text-black dark:text-black rounded-lg px-2 w-1/4 text-center'
-                                        value={car_carisma || '8'}
+                                        min="8"
+                                        className='m-4 p-1 text-black dark:text-black px-2 w-2/12 text-center h-[39px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                                        value={car_carisma || 8}
                                         onChange={(e) => setCar_carisma(e.target.value)}
                                     />
+                                    <button onClick={(e) => setCar_carisma(car_carisma + 1)} type='button' className="bg-sky-700 hover:bg-sky-800 text-white-800 font-bold py-2 px-4 -mx-4  rounded-r">
+                                        +
+                                    </button>
+
+                                    <p className='font-semibold text-lg'>{takebonif(car_carisma || 8).string}</p>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Imagen: {errors.imagen && <p className="text-red-600 float-right">{errors.imagen}</p>}</label><br />
+                            <input
+                                type="text"
+                                id="imagen"
+                                name="imagen"
+                                placeholder='Imagen'
+                                className='m-4 p-1 text-black dark:text-black w-3/4 rounded-lg px-2'
+                                value={imagen || ''}
+                                onChange={(e) => setImagen(e.target.value)}
+                            />
+                        </div>
                     </div>
                     <button
                         type={bstate}
