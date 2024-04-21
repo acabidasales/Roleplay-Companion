@@ -688,7 +688,7 @@ export default function Personaje_create() {
                                                         </div>
                                                     }
                                                 >
-                                                    <Image width={25} height={25} src="/info.png" />
+                                                    <Image width={25} height={25} src="/info_white.png" />
                                                 </Tooltip>
                                             </div>
                                         </div>
@@ -729,7 +729,7 @@ export default function Personaje_create() {
                                                         </div>
                                                     }
                                                 >
-                                                    <Image width={25} height={25} src="/info.png" />
+                                                    <Image width={25} height={25} className='fill-white' src="/info_white.png" />
                                                 </Tooltip>
                                             </div>
                                         </div>
