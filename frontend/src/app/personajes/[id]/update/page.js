@@ -1,10 +1,9 @@
 "use client"
 
 import Link from 'next/link';
-import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from 'next/navigation';
-import { Tooltip } from "@nextui-org/tooltip";
+import { Tooltip } from "flowbite-react"
 
 export default function Personaje_create() {
     const router = useRouter()
@@ -138,52 +137,52 @@ export default function Personaje_create() {
             },
             body: JSONdata,
         }).then((res) => res.json())
-            .then(async (data) => {
-                const personaje_id = data.personaje.id
-                const equipamientosIDs = [];
-                const habilidadesIDs = [];
+        .then(async (data) => {
+            const personaje_id = data.personaje.id
+            const equipamientosIDs = [];
+            const habilidadesIDs = [];
 
-                console.log(personaje_id);
+            console.log(personaje_id);
 
-                for (let i = 0; i < competencias_equipamiento.length; i++) {
-                    const competenciaequipamientoID = competencias_equipamiento[i];
-                    equipamientosIDs.push({
-                        personaje_id: personaje_id,
-                        competencia_equipamiento_id: competenciaequipamientoID
-                    });
-                }
-
-                for (let i = 0; i < competencias_habilidades.length; i++) {
-                    const competenciahabilidadesID = competencias_habilidades[i];
-                    habilidadesIDs.push({
-                        personaje_id: personaje_id,
-                        competencia_habilidad_id: competenciahabilidadesID
-                    });
-                }
-
-                const JSONdataequipamiento = JSON.stringify(equipamientosIDs);
-                const JSONdatahabilidad = JSON.stringify(habilidadesIDs);
-
-                await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-equipamiento', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        credentials: 'include',
-                    },
-                    body: JSONdataequipamiento,
+            for (let i = 0; i < competencias_equipamiento.length; i++) {
+                const competenciaequipamientoID = competencias_equipamiento[i];
+                equipamientosIDs.push({
+                    personaje_id: personaje_id,
+                    competencia_equipamiento_id: competenciaequipamientoID
                 });
-
-                await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-habilidad', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        credentials: 'include',
-                    },
-                    body: JSONdatahabilidad,
+            }
+    
+            for (let i = 0; i < competencias_habilidades.length; i++) {
+                const competenciahabilidadesID = competencias_habilidades[i];
+                habilidadesIDs.push({
+                    personaje_id: personaje_id,
+                    competencia_habilidad_id: competenciahabilidadesID
                 });
-
-                router.push("/personajes")
+            }
+    
+            const JSONdataequipamiento = JSON.stringify(equipamientosIDs);
+            const JSONdatahabilidad = JSON.stringify(habilidadesIDs);
+    
+            await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-equipamiento', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    credentials: 'include',
+                },
+                body: JSONdataequipamiento,
             });
+    
+            await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-habilidad', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    credentials: 'include',
+                },
+                body: JSONdatahabilidad,
+            });
+
+            router.push("/personajes")
+        });
     };
     //CARGAR DATOS
     useEffect(() => {
@@ -663,7 +662,7 @@ export default function Personaje_create() {
                                     const isSelected = competencias_equipamiento.includes(item.id);
                                     const bgColor = isSelected ? 'bg-sky-600' : 'bg-sky-900';
                                     return (
-                                        <div key={item.id} className={`flex flex-row align-middle justify-between float-start gap-6 ${bgColor} p-2 px-4 rounded-3xl`}>
+                                        <div key={item.id} className={`flex flex-row align-middle justify-start float-start gap-6 ${bgColor} p-2 px-4 rounded-3xl`}>
                                             <input
                                                 type="checkbox"
                                                 id={item.id}
@@ -676,21 +675,6 @@ export default function Personaje_create() {
                                             <label htmlFor={`competencias_equipamiento_${item.id}`} className=' pl-2'>
                                                 {item.nombre}
                                             </label>
-                                            <div className='flex self-center'>
-                                                <Tooltip
-                                                    offset={15}
-                                                    className='bg-gray-950 rounded-3xl'
-                                                    delay={500}
-                                                    content={
-                                                        <div className="px-4 py-2 max-w-[400px] text-justify">
-                                                            <div className="text-md font-bold">{item.nombre}</div>
-                                                            <div className="text-sm mt-2">{item.descripcion}</div>
-                                                        </div>
-                                                    }
-                                                >
-                                                    <Image width={25} height={25} src="/info.png" />
-                                                </Tooltip>
-                                            </div>
                                         </div>
                                     )
                                 })}
@@ -704,7 +688,7 @@ export default function Personaje_create() {
                                     const isSelected = competencias_habilidades.includes(item.id);
                                     const bgColor = isSelected ? 'bg-sky-600' : 'bg-sky-900';
                                     return (
-                                        <div key={item.id} className={`flex flex-row align-middle justify-between float-start gap-6 ${bgColor} p-2 px-4 rounded-3xl`}>
+                                        <div key={item.id} className={`flex flex-row align-middle justify-start float-start gap-6 ${bgColor} p-2 px-4 rounded-3xl`}>
                                             <input
                                                 type="checkbox"
                                                 id={item.id}
@@ -717,21 +701,6 @@ export default function Personaje_create() {
                                             <label htmlFor={`competencias_habilidades_${item.id}`} className=' pl-2'>
                                                 {item.habilidad}
                                             </label>
-                                            <div className='flex self-center'>
-                                                <Tooltip
-                                                    offset={15}
-                                                    className='bg-gray-950 rounded-3xl'
-                                                    delay={500}
-                                                    content={
-                                                        <div className="px-4 py-2 max-w-[400px] text-justify">
-                                                            <div className="text-md font-bold">{item.habilidad}</div>
-                                                            <div className="text-sm mt-2">{item.descripcion}</div>
-                                                        </div>
-                                                    }
-                                                >
-                                                    <Image width={25} height={25} src="/info.png" />
-                                                </Tooltip>
-                                            </div>
                                         </div>
                                     )
                                 })}
