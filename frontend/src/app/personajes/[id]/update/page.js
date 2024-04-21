@@ -1,11 +1,12 @@
 "use client"
 
 import Link from 'next/link';
+import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from 'next/navigation';
-import { Tooltip } from "flowbite-react"
+import { Tooltip } from "@nextui-org/tooltip";
 
-export default function Personaje_create() {
+export default function Personaje_update(id) {
     const router = useRouter()
     const firstRender = useRef(true);
     const [userstate, setUserstate] = useState('')
@@ -43,6 +44,7 @@ export default function Personaje_create() {
     const [data_alineamientos, setData_alineamientos] = useState({})
     const [data_competenciaequipamiento, setData_competenciaequipamiento] = useState({})
     const [data_competenciahabilidades, setData_competenciahabilidades] = useState({})
+    const [data_personaje, setData_personaje] = useState({})
 
     useEffect(() => {
         setUserstate(localStorage.getItem('auth'))
@@ -97,6 +99,8 @@ export default function Personaje_create() {
             firstRender.current = false;
             return;
         }
+
+        console.log(id.params.id);
         validateForm()
     }, [])
 
@@ -129,7 +133,7 @@ export default function Personaje_create() {
 
         const JSONdata = JSON.stringify(data_create);
 
-        const resp = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes/create', {
+       /*  const resp = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -137,52 +141,52 @@ export default function Personaje_create() {
             },
             body: JSONdata,
         }).then((res) => res.json())
-        .then(async (data) => {
-            const personaje_id = data.personaje.id
-            const equipamientosIDs = [];
-            const habilidadesIDs = [];
+            .then(async (data) => {
+                const personaje_id = data.personaje.id
+                const equipamientosIDs = [];
+                const habilidadesIDs = [];
 
-            console.log(personaje_id);
+                console.log(personaje_id);
 
-            for (let i = 0; i < competencias_equipamiento.length; i++) {
-                const competenciaequipamientoID = competencias_equipamiento[i];
-                equipamientosIDs.push({
-                    personaje_id: personaje_id,
-                    competencia_equipamiento_id: competenciaequipamientoID
+                for (let i = 0; i < competencias_equipamiento.length; i++) {
+                    const competenciaequipamientoID = competencias_equipamiento[i];
+                    equipamientosIDs.push({
+                        personaje_id: personaje_id,
+                        competencia_equipamiento_id: competenciaequipamientoID
+                    });
+                }
+
+                for (let i = 0; i < competencias_habilidades.length; i++) {
+                    const competenciahabilidadesID = competencias_habilidades[i];
+                    habilidadesIDs.push({
+                        personaje_id: personaje_id,
+                        competencia_habilidad_id: competenciahabilidadesID
+                    });
+                }
+
+                const JSONdataequipamiento = JSON.stringify(equipamientosIDs);
+                const JSONdatahabilidad = JSON.stringify(habilidadesIDs);
+
+                await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-equipamiento', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        credentials: 'include',
+                    },
+                    body: JSONdataequipamiento,
                 });
-            }
-    
-            for (let i = 0; i < competencias_habilidades.length; i++) {
-                const competenciahabilidadesID = competencias_habilidades[i];
-                habilidadesIDs.push({
-                    personaje_id: personaje_id,
-                    competencia_habilidad_id: competenciahabilidadesID
-                });
-            }
-    
-            const JSONdataequipamiento = JSON.stringify(equipamientosIDs);
-            const JSONdatahabilidad = JSON.stringify(habilidadesIDs);
-    
-            await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-equipamiento', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    credentials: 'include',
-                },
-                body: JSONdataequipamiento,
-            });
-    
-            await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-habilidad', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    credentials: 'include',
-                },
-                body: JSONdatahabilidad,
-            });
 
-            router.push("/personajes")
-        });
+                await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-habilidad', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        credentials: 'include',
+                    },
+                    body: JSONdatahabilidad,
+                });
+
+                router.push("/personajes")
+            }); */
     };
     //CARGAR DATOS
     useEffect(() => {
@@ -192,6 +196,33 @@ export default function Personaje_create() {
             .then((res) => res.json())
             .then((data) => {
                 setData_razas(data)
+                fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes/' + id.params.id, {
+                    credentials: 'include',
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setData_personaje(data)
+                        setNombre(data.nombre)
+                        setId_raza(data.id_raza)
+                        setId_clase(data.id_clase)
+                        setNivel(data.nivel)
+                        setImagen(data.imagen)
+                        setId_Campaña(data.id_campaña)
+                        setCar_fuerza(data.car_fuerza)
+                        setCar_destreza(data.car_destreza)
+                        setCar_constitucion(data.car_constitucion)
+                        setCar_inteligencia(data.car_inteligencia)
+                        setCar_sabiduria(data.car_sabiduria)
+                        setCar_carisma(data.car_carisma)
+                        setId_alineamiento(data.id_alineamiento)
+                        setId_transfondo(data.id_transfondo)
+                        setApariencia(data.apariencia)
+                        setEdad(data.edad)
+                        setHistoria(data.historia)
+                        setNotas(data.notas)
+                        setPuntos_experiencia(data.puntos_experiencia)
+                    })
+                
                 fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/clases', {
                     credentials: 'include',
                 })
@@ -250,7 +281,8 @@ export default function Personaje_create() {
             !isEmpty(data_competenciaequipamiento) &&
             !isEmpty(data_competenciahabilidades) &&
             !isEmpty(data_alineamientos) &&
-            !isEmpty(data_transfondos)
+            !isEmpty(data_transfondos) &&
+            !isEmpty(data_personaje)
         ) {
             setLoading(false);
         } else {
@@ -263,7 +295,8 @@ export default function Personaje_create() {
         data_competenciaequipamiento,
         data_competenciahabilidades,
         data_alineamientos,
-        data_transfondos
+        data_transfondos,
+        data_personaje
     ]);
 
     function takebonif(num) {
@@ -298,7 +331,7 @@ export default function Personaje_create() {
 
     if (!userstate) return (
         <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-3 z-0'>
-            <p className="mt-4 mb-4 ml-4 pt-2 pb-2 text-center w-full">Debes estar registrado para crear unpersonaje. Si no estas registrado,
+            <p className="mt-4 mb-4 ml-4 pt-2 pb-2 text-center w-full">Debes estar registrado para actualizar un personaje. Si no estas registrado,
                 <Link className='m-4 text-sky-500 relative group' href="/register">Hazme click
                     <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
                     <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-sky-500 group-hover:w-1/2 group-hover:transition-all"></span>
@@ -354,7 +387,7 @@ export default function Personaje_create() {
 
                         <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
                             <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Clase: {errors.clase && <p className="text-red-600 float-right">{errors.clase}</p>}</label><br />
-                            <select id="clase" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_clase(e.target.value)}>
+                            <select id="clase" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_clase(e.target.value)} value={id_clase || ''}>
                                 <option value="">--- Elige tu clase ---</option>
                                 {data_clases.map(item => {
                                     return (
@@ -400,7 +433,7 @@ export default function Personaje_create() {
                         </div>
                         <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
                             <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Campaña: {errors.campaña && <p className="text-red-600 float-right">{errors.campaña}</p>}</label><br />
-                            <select id="campaña" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_Campaña(e.target.value)}>
+                            <select id="campaña" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_Campaña(e.target.value)} value={id_campaña || ''}>
                                 <option value="">--- Elige campaña ---</option>
                                 {data_camapañas.map(item => {
                                     return (
@@ -550,7 +583,7 @@ export default function Personaje_create() {
 
                         <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
                             <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Alineamiento: {errors.alineamiento && <p className="text-red-600 float-right">{errors.alineamiento}</p>}</label><br />
-                            <select id="alineamiento" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_alineamiento(e.target.value)}>
+                            <select id="alineamiento" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_alineamiento(e.target.value)} value={id_alineamiento || ''}>
                                 <option value="">--- Elige alineamiento ---</option>
                                 {data_alineamientos.map(item => {
                                     return (
@@ -572,7 +605,7 @@ export default function Personaje_create() {
                         </div>
                         <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
                             <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Transfondo: {errors.transfondo && <p className="text-red-600 float-right">{errors.transfondo}</p>}</label><br />
-                            <select id="transfondo" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_transfondo(e.target.value)}>
+                            <select id="transfondo" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_transfondo(e.target.value)} value={id_transfondo || ''}>
                                 <option value="">--- Elige transfondo ---</option>
                                 {data_transfondos.map(item => {
                                     return (
@@ -662,7 +695,7 @@ export default function Personaje_create() {
                                     const isSelected = competencias_equipamiento.includes(item.id);
                                     const bgColor = isSelected ? 'bg-sky-600' : 'bg-sky-900';
                                     return (
-                                        <div key={item.id} className={`flex flex-row align-middle justify-start float-start gap-6 ${bgColor} p-2 px-4 rounded-3xl`}>
+                                        <div key={item.id} className={`flex flex-row align-middle justify-between float-start gap-6 ${bgColor} p-2 px-4 rounded-3xl`}>
                                             <input
                                                 type="checkbox"
                                                 id={item.id}
@@ -675,6 +708,21 @@ export default function Personaje_create() {
                                             <label htmlFor={`competencias_equipamiento_${item.id}`} className=' pl-2'>
                                                 {item.nombre}
                                             </label>
+                                            <div className='flex self-center'>
+                                                <Tooltip
+                                                    offset={15}
+                                                    className='bg-gray-950 rounded-3xl'
+                                                    delay={500}
+                                                    content={
+                                                        <div className="px-4 py-2 max-w-[400px] text-justify">
+                                                            <div className="text-md font-bold">{item.nombre}</div>
+                                                            <div className="text-sm mt-2">{item.descripcion}</div>
+                                                        </div>
+                                                    }
+                                                >
+                                                    <Image width={25} height={25}  alt="info equ"  src="/info_white.png" />
+                                                </Tooltip>
+                                            </div>
                                         </div>
                                     )
                                 })}
@@ -688,7 +736,7 @@ export default function Personaje_create() {
                                     const isSelected = competencias_habilidades.includes(item.id);
                                     const bgColor = isSelected ? 'bg-sky-600' : 'bg-sky-900';
                                     return (
-                                        <div key={item.id} className={`flex flex-row align-middle justify-start float-start gap-6 ${bgColor} p-2 px-4 rounded-3xl`}>
+                                        <div key={item.id} className={`flex flex-row align-middle justify-between float-start gap-6 ${bgColor} p-2 px-4 rounded-3xl`}>
                                             <input
                                                 type="checkbox"
                                                 id={item.id}
@@ -701,6 +749,21 @@ export default function Personaje_create() {
                                             <label htmlFor={`competencias_habilidades_${item.id}`} className=' pl-2'>
                                                 {item.habilidad}
                                             </label>
+                                            <div className='flex self-center'>
+                                                <Tooltip
+                                                    offset={15}
+                                                    className='bg-gray-950 rounded-3xl'
+                                                    delay={500}
+                                                    content={
+                                                        <div className="px-4 py-2 max-w-[400px] text-justify">
+                                                            <div className="text-md font-bold">{item.habilidad}</div>
+                                                            <div className="text-sm mt-2">{item.descripcion}</div>
+                                                        </div>
+                                                    }
+                                                >
+                                                    <Image width={25} height={25} className='fill-white' alt="info hab" src="/info_white.png" />
+                                                </Tooltip>
+                                            </div>
                                         </div>
                                     )
                                 })}

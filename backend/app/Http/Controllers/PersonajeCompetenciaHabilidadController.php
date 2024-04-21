@@ -33,4 +33,14 @@ class PersonajeCompetenciaHabilidadController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    public function show($id)
+    {
+        $competenciaHabilidad = PersonajeCompetenciaHabilidad::find($id);
+
+        if ($competenciaHabilidad) {
+            return response()->json($competenciaHabilidad);
+        } else {
+            return response()->json(['message' => 'Competencia de Habilidad no encontrada'], 404);
+        }
+    }
 }

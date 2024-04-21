@@ -59,7 +59,7 @@ export default function Personajes_Read(id) {
                 </div>
             </div>
             <div className='p-16 flex'>
-                <Link href={'/campanas/update/' + data_personajes.id} className='flex w-full'>
+                <Link href={'/personajes/' + data_personajes.id + '/update'} className='flex w-full'>
                     <div className='flex w-full justify-center text-lg my-auto text-white bg-sky-700 border-sky-800 border-2 rounded-l-xl hover:bg-sky-800 p-2 transition-all'>
                         Modificar
                     </div>

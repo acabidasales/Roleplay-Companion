@@ -56,8 +56,8 @@ Route::get('/personajes/filtrarPorCampana/{idCampaña}', [PersonajeController::c
 
 Route::apiResource('/alineamientos', AlineamientoController::class)->only(['index', 'show']);
 
-Route::apiResource('/personajes/filtrarPorEquipamiento/{id}', CompetenciaEquipamientoController::class)->only(['index']);
-Route::apiResource('/personajes/filtrarPorHabilidades/{id}', CompetenciaHabilidadesController::class)->only(['index']);
+Route::apiResource('/personajes/filtrarPorEquipamiento/{id}', PersonajeCompetenciaEquipamientoController::class)->only(['index']);
+Route::apiResource('/personajes/filtrarPorHabilidades/{id}', PersonajeCompetenciaHabilidadController::class)->only(['index']);
 
 Route::apiResource('/clases', ClaseController::class)->only(['index', 'show']);
 
