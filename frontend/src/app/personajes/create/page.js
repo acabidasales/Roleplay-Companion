@@ -14,8 +14,9 @@ export default function Personaje_create() {
     const [nombre, setNombre] = useState('')
     const [id_raza, setId_raza] = useState('')
     const [id_clase, setId_clase] = useState('')
+    const [id_campaña, setId_Campaña] = useState('')
     const [estado, setEstado] = useState('')
-    const [nivel, setNivel] = useState('')
+    const [nivel, setNivel] = useState(1)
     const [imagen, setImagen] = useState('')
     const [car_fuerza, setCar_fuerza] = useState(8)
     const [car_destreza, setCar_destreza] = useState(8)
@@ -24,16 +25,24 @@ export default function Personaje_create() {
     const [car_sabiduria, setCar_sabiduria] = useState(8)
     const [car_carisma, setCar_carisma] = useState(8)
     const [id_transfondo, setId_transfondo] = useState('')
-    const [id_alineamiento, setid_alineamiento] = useState('')
+    const [id_alineamiento, setId_alineamiento] = useState('')
     const [apariencia, setApariencia] = useState('')
     const [edad, setEdad] = useState('')
     const [historia, setHistoria] = useState('')
     const [notas, setNotas] = useState('')
+    const [puntos_experiencia, setPuntos_experiencia] = useState(0)
+    const [competencias_equipamiento, setCompetenciasEquipamiento] = useState([])
+    const [competencias_habilidades, setCompetenciasHabilidades] = useState([])
     const [errors, setErrors] = useState({});
 
     const [isLoading, setLoading] = useState(true)
     const [data_razas, setData_razas] = useState({})
     const [data_clases, setData_clases] = useState({})
+    const [data_camapañas, setData_campañas] = useState({})
+    const [data_transfondos, setData_transfondos] = useState({})
+    const [data_alineamientos, setData_alineamientos] = useState({})
+    const [data_competenciaequipamiento, setData_competenciaequipamiento] = useState({})
+    const [data_competenciahabilidades, setData_competenciahabilidades] = useState({})
 
     useEffect(() => {
         setUserstate(localStorage.getItem('auth'))
@@ -46,9 +55,35 @@ export default function Personaje_create() {
         if (nombre === "") {
             errors.nombre = 'Es necesario un nombre.';
         }
-
+        if (id_raza === "") {
+            errors.raza = 'Es necesaria una raza';
+        }
+        if (id_clase === "") {
+            errors.clase = 'Es necesaria una clase';
+        }
+        if (nivel === "") {
+            errors.nivel = 'Es necesario empezar con al menos nivel 1';
+        }
         if (imagen === "") {
             errors.imagen = 'Imagen necesaria.';
+        }
+        if (id_campaña === "") {
+            errors.campaña = 'Es necesaria una campaña';
+        }
+        if (id_alineamiento === "") {
+            errors.alineamiento = 'Es necesario tener un alineamiento';
+        }
+        if (id_transfondo === "") {
+            errors.transfondo = 'Es necesaria un transfondo';
+        }
+        if (apariencia === "") {
+            errors.apariencia = 'Es necesaria una apariencia';
+        }
+        if (edad === "") {
+            errors.edad = 'Es necesaria una edad';
+        }
+        if (historia === "") {
+            errors.historia = 'Es necesaria una historia';
         }
 
         setErrors(errors);
@@ -69,26 +104,87 @@ export default function Personaje_create() {
         event.preventDefault()
 
         const data_create = {
-            nombre: nombre,
-            id_raza: id_raza,
-            id_clase: id_clase,
-            propietario: user
+            "usuario_propietario": user,
+            "nombre": nombre,
+            "id_raza": id_raza,
+            "id_clase": id_clase,
+            "id_campaña": id_campaña,
+            "estado": "Vivo",
+            "nivel": nivel,
+            "imagen": imagen,
+            "car_fuerza": car_fuerza,
+            "car_destreza": car_destreza,
+            "car_constitucion": car_constitucion,
+            "car_inteligencia": car_inteligencia,
+            "car_sabiduria": car_sabiduria,
+            "car_carisma": car_carisma,
+            "id_transfondo": id_transfondo,
+            "id_alineamiento": id_alineamiento,
+            "apariencia": apariencia,
+            "edad": edad,
+            "historia": historia,
+            "notas": notas,
+            "puntos de experiencia": puntos_experiencia
         }
 
         const JSONdata = JSON.stringify(data_create);
 
-        await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes', {
+        const resp = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 credentials: 'include',
             },
             body: JSONdata,
+        }).then((res) => res.json())
+        .then(async (data) => {
+            const personaje_id = data.personaje.id
+            const equipamientosIDs = [];
+            const habilidadesIDs = [];
+
+            console.log(personaje_id);
+
+            for (let i = 0; i < competencias_equipamiento.length; i++) {
+                const competenciaequipamientoID = competencias_equipamiento[i];
+                equipamientosIDs.push({
+                    personaje_id: personaje_id,
+                    competencia_equipamiento_id: competenciaequipamientoID
+                });
+            }
+    
+            for (let i = 0; i < competencias_habilidades.length; i++) {
+                const competenciahabilidadesID = competencias_habilidades[i];
+                habilidadesIDs.push({
+                    personaje_id: personaje_id,
+                    competencia_habilidad_id: competenciahabilidadesID
+                });
+            }
+    
+            const JSONdataequipamiento = JSON.stringify(equipamientosIDs);
+            const JSONdatahabilidad = JSON.stringify(habilidadesIDs);
+    
+            await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-equipamiento', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    credentials: 'include',
+                },
+                body: JSONdataequipamiento,
+            });
+    
+            await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-habilidad', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    credentials: 'include',
+                },
+                body: JSONdatahabilidad,
+            });
+
+            router.push("/personajes")
         });
-
-        router.push("/personajes")
     };
-
+    //CARGAR DATOS
     useEffect(() => {
         fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/razas', {
             credentials: 'include',
@@ -102,11 +198,73 @@ export default function Personaje_create() {
                     .then((res) => res.json())
                     .then((data) => {
                         setData_clases(data)
-
-                        setLoading(false)
+                    })
+                fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/campanas', {
+                    credentials: 'include',
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setData_campañas(data)
+                    })
+                fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/competencias-habilidades', {
+                    credentials: 'include',
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setData_competenciahabilidades(data)
+                    })
+                fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/competencias-equipamiento', {
+                    credentials: 'include',
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setData_competenciaequipamiento(data)
+                    })
+                fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/alineamientos', {
+                    credentials: 'include',
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setData_alineamientos(data)
+                        fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/transfondos', {
+                            credentials: 'include',
+                        })
+                            .then((res) => res.json())
+                            .then((data) => {
+                                setData_transfondos(data)
+                            })
                     })
             })
     }, [])
+
+    function isEmpty(obj) {
+        return Object.keys(obj).length === 0 && obj.constructor === Object;
+    }
+    //VERIFICAR SI SE HAN CARGADO LOS DATOS
+    useEffect(() => {
+        // Comprueba si todos los datos han sido cargados
+        if (
+            !isEmpty(data_razas) &&
+            !isEmpty(data_clases) &&
+            !isEmpty(data_camapañas) &&
+            !isEmpty(data_competenciaequipamiento) &&
+            !isEmpty(data_competenciahabilidades) &&
+            !isEmpty(data_alineamientos) &&
+            !isEmpty(data_transfondos)
+        ) {
+            setLoading(false);
+        } else {
+            setLoading(true);
+        }
+    }, [
+        data_razas,
+        data_clases,
+        data_camapañas,
+        data_competenciaequipamiento,
+        data_competenciahabilidades,
+        data_alineamientos,
+        data_transfondos
+    ]);
 
     function takebonif(num) {
         let bonif = Math.floor((num - 10) / 2);
@@ -116,6 +274,27 @@ export default function Personaje_create() {
         }
         return bonif_obj;
     }
+
+    const handleCheckboxChangeEquipamiento = (itemName) => {
+        setCompetenciasEquipamiento(prevItems => {
+            if (prevItems.includes(itemName)) {
+                return prevItems.filter(item => item !== itemName);
+            } else {
+                return [...prevItems, itemName];
+            }
+        });
+        console.log(competencias_equipamiento);
+    };
+
+    const handleCheckboxChangeHabilidades = (itemName) => {
+        setCompetenciasHabilidades(prevItems => {
+            if (prevItems.includes(itemName)) {
+                return prevItems.filter(item => item !== itemName);
+            } else {
+                return [...prevItems, itemName];
+            }
+        });
+    };
 
     if (!userstate) return (
         <div className='lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 rounded pl-3 pr-3 pb-3 z-0'>
@@ -203,9 +382,43 @@ export default function Personaje_create() {
                                 name="nivel"
                                 placeholder='Nivel'
                                 className='m-4 p-1 text-black dark:text-black w-3/4 rounded-lg px-2'
-                                value={nivel || '1'}
+                                value={nivel || 1}
                                 onChange={(e) => setNivel(e.target.value)}
                             />
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Imagen: {errors.imagen && <p className="text-red-600 float-right">{errors.imagen}</p>}</label><br />
+                            <input
+                                type="text"
+                                id="imagen"
+                                name="imagen"
+                                placeholder='Imagen'
+                                className='m-4 p-1 text-black dark:text-black w-3/4 rounded-lg px-2'
+                                value={imagen || ''}
+                                onChange={(e) => setImagen(e.target.value)}
+                            />
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Campaña: {errors.campaña && <p className="text-red-600 float-right">{errors.campaña}</p>}</label><br />
+                            <select id="campaña" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_Campaña(e.target.value)}>
+                                <option value="">--- Elige campaña ---</option>
+                                {data_camapañas.map(item => {
+                                    return (
+
+                                        <option
+                                            key={item.id}
+                                            id={item.id}
+                                            name={item.id}
+                                            title={item.descripcion}
+                                            className='m-4 border-sky-800 text-black focus:ring-sky-600'
+                                            value={item.id}
+                                        >
+                                            {item.nombre}
+                                        </option>
+                                    )
+                                }
+                                )}
+                            </select>
                         </div>
                         <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950 col-span-2'>
                             <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Estadisticas:</label><br />
@@ -334,17 +547,165 @@ export default function Personaje_create() {
                             </div>
 
                         </div>
+
                         <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
-                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Imagen: {errors.imagen && <p className="text-red-600 float-right">{errors.imagen}</p>}</label><br />
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Alineamiento: {errors.alineamiento && <p className="text-red-600 float-right">{errors.alineamiento}</p>}</label><br />
+                            <select id="alineamiento" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_alineamiento(e.target.value)}>
+                                <option value="">--- Elige alineamiento ---</option>
+                                {data_alineamientos.map(item => {
+                                    return (
+
+                                        <option
+                                            key={item.id}
+                                            id={item.id}
+                                            name={item.id}
+                                            title={item.descripción}
+                                            className='m-4 border-sky-800 text-black focus:ring-sky-600'
+                                            value={item.id}
+                                        >
+                                            {item.alineamiento}
+                                        </option>
+                                    )
+                                }
+                                )}
+                            </select>
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Transfondo: {errors.transfondo && <p className="text-red-600 float-right">{errors.transfondo}</p>}</label><br />
+                            <select id="transfondo" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setId_transfondo(e.target.value)}>
+                                <option value="">--- Elige transfondo ---</option>
+                                {data_transfondos.map(item => {
+                                    return (
+
+                                        <option
+                                            key={item.id}
+                                            id={item.id}
+                                            name={item.id}
+                                            title={item.descripcion}
+                                            className='m-4 border-sky-800 text-black focus:ring-sky-600'
+                                            value={item.id}
+                                        >
+                                            {item.nombre}
+                                        </option>
+                                    )
+                                }
+                                )}
+                            </select>
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Apariencia: {errors.apariencia && <p className="text-red-600 float-right">{errors.apariencia}</p>}</label><br />
+                            <textarea
+                                type="text"
+                                id="apariencia"
+                                name="apariencia"
+                                placeholder='Apariencia'
+                                rows="6"
+                                className='m-4 p-1 text-black dark:text-black w-3/4 rounded-lg px-2'
+                                value={apariencia || ''}
+                                onChange={(e) => setApariencia(e.target.value)}
+                            />
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950 h-full'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16 h-full'>Edad en años: {errors.edad && <p className="text-red-600 float-right">{errors.edad}</p>}</label><br />
                             <input
                                 type="text"
-                                id="imagen"
-                                name="imagen"
-                                placeholder='Imagen'
-                                className='m-4 p-1 text-black dark:text-black w-3/4 rounded-lg px-2'
-                                value={imagen || ''}
-                                onChange={(e) => setImagen(e.target.value)}
+                                id="edad"
+                                name="edad"
+                                placeholder='Edad'
+                                className='m-4 p-1 text-black dark:text-black w-3/4 rounded-lg px-2 mb-24'
+                                value={edad || ''}
+                                onChange={(e) => setEdad(e.target.value)}
                             />
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Historia: {errors.historia && <p className="text-red-600 float-right">{errors.historia}</p>}</label><br />
+                            <textarea
+                                type="text"
+                                rows="8"
+                                id="historia"
+                                name="historia"
+                                placeholder='Historia'
+                                className='m-4 p-1 text-black dark:text-black w-3/4 rounded-lg px-2'
+                                value={historia || ''}
+                                onChange={(e) => setHistoria(e.target.value)}
+                            />
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Notas adicionales: {errors.notas && <p className="text-red-600 float-right">{errors.notas}</p>}</label><br />
+                            <textarea
+                                type="text"
+                                rows="8"
+                                id="notas"
+                                name="notas"
+                                placeholder='Notas'
+                                className='m-4 p-1 text-black dark:text-black w-3/4 rounded-lg px-2'
+                                value={notas || ''}
+                                onChange={(e) => setNotas(e.target.value)}
+                            />
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950 col-span-2'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Puntos de experiencia: {errors.puntos_experiencia && <p className="text-red-600 float-right">{errors.puntos_experiencia}</p>}</label><br />
+                            <input
+                                type="number"
+                                id="puntos_experiencia"
+                                name="puntos_experiencia"
+                                placeholder='Puntos de experiencia'
+                                className='m-4 p-1 text-black dark:text-black w-3/4 rounded-lg px-2'
+                                value={puntos_experiencia || 0}
+                                onChange={(e) => setPuntos_experiencia(e.target.value)}
+                            />
+                        </div>
+                        <div className='w-full justify-center items-center rounded-xl bg-sky-950 pt-4 col-span-2'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Competencias de equipamiento: {errors.competencias_equipamiento && <p className="text-red-600 float-right">{errors.competencias_equipamiento}</p>}</label><br />
+                            <div className='grid lg:grid-cols-4 md:grid-cols-3 gap-4 align-middle justify-center mt-4 p-8'>
+                                {data_competenciaequipamiento.map(item => {
+                                    const isSelected = competencias_equipamiento.includes(item.id);
+                                    const bgColor = isSelected ? 'bg-sky-600' : 'bg-sky-900';
+                                    return (
+                                        <div key={item.id} className={`flex flex-row align-middle justify-start float-start gap-6 ${bgColor} p-2 px-4 rounded-3xl`}>
+                                            <input
+                                                type="checkbox"
+                                                id={item.id}
+                                                name="competencias_equipamiento"
+                                                className='text-black dark:text-black min-w-4'
+                                                value={item.nombre}
+                                                onChange={() => handleCheckboxChangeEquipamiento(item.id)}
+                                                checked={isSelected}
+                                            />
+                                            <label htmlFor={`competencias_equipamiento_${item.id}`} className=' pl-2'>
+                                                {item.nombre}
+                                            </label>
+                                        </div>
+                                    )
+                                })}
+
+                            </div>
+                        </div>
+                        <div className='w-full justify-center items-center rounded-xl bg-sky-950 pt-4 col-span-2'>
+                            <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Competencias de habilidades: {errors.habilidades && <p className="text-red-600 float-right">{errors.habilidades}</p>}</label><br />
+                            <div className='grid lg:grid-cols-4 md:grid-cols-3 gap-4 align-middle justify-center mt-4 p-8'>
+                                {data_competenciahabilidades.map(item => {
+                                    const isSelected = competencias_habilidades.includes(item.id);
+                                    const bgColor = isSelected ? 'bg-sky-600' : 'bg-sky-900';
+                                    return (
+                                        <div key={item.id} className={`flex flex-row align-middle justify-start float-start gap-6 ${bgColor} p-2 px-4 rounded-3xl`}>
+                                            <input
+                                                type="checkbox"
+                                                id={item.id}
+                                                name="competencias_habilidades"
+                                                className='text-black dark:text-black min-w-4'
+                                                value={item.habilidad}
+                                                onChange={() => handleCheckboxChangeHabilidades(item.id)}
+                                                checked={isSelected}
+                                            />
+                                            <label htmlFor={`competencias_habilidades_${item.id}`} className=' pl-2'>
+                                                {item.habilidad}
+                                            </label>
+                                        </div>
+                                    )
+                                })}
+
+                            </div>
                         </div>
                     </div>
                     <button

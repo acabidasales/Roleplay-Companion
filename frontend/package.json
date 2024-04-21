@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/checkbox": "^2.0.29",
+    "@nextui-org/chip": "^2.0.28",
+    "@nextui-org/tooltip": "^2.0.33",
     "boxicons": "^2.1.4",
     "cookies-next": "^4.1.1",
     "flowbite": "^2.3.0",

@@ -10,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className="!scroll-smooth">
-      <body className="bg-[url('/bg-blur.png')] bg-fixed w-full bg-no-repeat bg-cover bg-left text-white">
+      <body className="bg-[url('/bg-blur.png')] bg-fixed bg-no-repeat bg-cover bg-left text-white">
         {/* Navbar superior con logo y login */}
         <Top_navbar/>
         
