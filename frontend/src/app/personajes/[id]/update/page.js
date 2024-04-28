@@ -105,9 +105,11 @@ export default function Personaje_update(id) {
     }, [])
 
     const submitForm = async (event) => {
+        console.log("a");
         event.preventDefault()
 
-        const data_create = {
+        const data_update = {
+            "id": id.params.id,
             "usuario_propietario": user,
             "nombre": nombre,
             "id_raza": id_raza,
@@ -131,62 +133,62 @@ export default function Personaje_update(id) {
             "puntos de experiencia": puntos_experiencia
         }
 
-        const JSONdata = JSON.stringify(data_create);
+        const JSONdata = JSON.stringify(data_update);
 
-       /*  const resp = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes/create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                credentials: 'include',
-            },
-            body: JSONdata,
-        }).then((res) => res.json())
-            .then(async (data) => {
-                const personaje_id = data.personaje.id
-                const equipamientosIDs = [];
-                const habilidadesIDs = [];
-
-                console.log(personaje_id);
-
-                for (let i = 0; i < competencias_equipamiento.length; i++) {
-                    const competenciaequipamientoID = competencias_equipamiento[i];
-                    equipamientosIDs.push({
-                        personaje_id: personaje_id,
-                        competencia_equipamiento_id: competenciaequipamientoID
-                    });
-                }
-
-                for (let i = 0; i < competencias_habilidades.length; i++) {
-                    const competenciahabilidadesID = competencias_habilidades[i];
-                    habilidadesIDs.push({
-                        personaje_id: personaje_id,
-                        competencia_habilidad_id: competenciahabilidadesID
-                    });
-                }
-
-                const JSONdataequipamiento = JSON.stringify(equipamientosIDs);
-                const JSONdatahabilidad = JSON.stringify(habilidadesIDs);
-
-                await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-equipamiento', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        credentials: 'include',
-                    },
-                    body: JSONdataequipamiento,
-                });
-
-                await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-habilidad', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        credentials: 'include',
-                    },
-                    body: JSONdatahabilidad,
-                });
-
-                router.push("/personajes")
-            }); */
+         const resp = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes/update/'+id.params.id, {
+             method: 'PUT',
+             headers: {
+                 'Content-Type': 'application/json',
+                 credentials: 'include',
+             },
+             body: JSONdata,
+         }).then((res) => res.json())
+             .then(async (data) => {
+                 const personaje_id = data.personaje.id
+                 const equipamientosIDs = [];
+                 const habilidadesIDs = [];
+ 
+                 console.log(personaje_id);
+ 
+                 for (let i = 0; i < competencias_equipamiento.length; i++) {
+                     const competenciaequipamientoID = competencias_equipamiento[i];
+                     equipamientosIDs.push({
+                         personaje_id: personaje_id,
+                         competencia_equipamiento_id: competenciaequipamientoID
+                     });
+                 }
+ 
+                 for (let i = 0; i < competencias_habilidades.length; i++) {
+                     const competenciahabilidadesID = competencias_habilidades[i];
+                     habilidadesIDs.push({
+                         personaje_id: personaje_id,
+                         competencia_habilidad_id: competenciahabilidadesID
+                     });
+                 }
+ 
+                 const JSONdataequipamiento = JSON.stringify(competencias_equipamiento);
+                 const JSONdatahabilidad = JSON.stringify(competencias_habilidades);
+ 
+                 await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-equipamiento/'+ id.params.id, {
+                     method: 'PUT',
+                     headers: {
+                         'Content-Type': 'application/json',
+                         credentials: 'include',
+                     },
+                     body: JSONdataequipamiento,
+                 });
+ 
+                 await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-habilidad/'+ id.params.id, {
+                     method: 'PUT',
+                     headers: {
+                         'Content-Type': 'application/json',
+                         credentials: 'include',
+                     },
+                     body: JSONdatahabilidad,
+                 });
+ 
+                 router.push("/personajes")
+             });
     };
     //CARGAR DATOS
     useEffect(() => {
@@ -207,6 +209,7 @@ export default function Personaje_update(id) {
                         setId_clase(data.id_clase)
                         setNivel(data.nivel)
                         setImagen(data.imagen)
+                        setEstado(data.estado)
                         setId_Campaña(data.id_campaña)
                         setCar_fuerza(data.car_fuerza)
                         setCar_destreza(data.car_destreza)
@@ -221,8 +224,34 @@ export default function Personaje_update(id) {
                         setHistoria(data.historia)
                         setNotas(data.notas)
                         setPuntos_experiencia(data.puntos_experiencia)
+                        fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes/filtrarPorHabilidades/'+id.params.id, {
+                            credentials: 'include',
+                        })
+                            .then((res) => res.json())
+                            .then((data) => {
+                                let idsArray = [];
+                                for (let i = 0; i < data.length; i++) {
+                                    if (data[i].id) {
+                                        idsArray.push(data[i].competencia_habilidad_id);
+                                    }
+                                }
+                                setCompetenciasHabilidades(idsArray);
+                            })
+                            fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes/filtrarPorEquipamiento/'+id.params.id, {
+                                credentials: 'include',
+                            })
+                                .then((res) => res.json())
+                                .then((data) => {
+                                    let idsArray = [];
+                                    for (let i = 0; i < data.length; i++) {
+                                        if (data[i].id) {
+                                            idsArray.push(data[i].competencia_equipamiento_id);
+                                        }
+                                    }
+                                    setCompetenciasEquipamiento(idsArray);
+                                })
                     })
-                
+
                 fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/clases', {
                     credentials: 'include',
                 })
@@ -347,7 +376,7 @@ export default function Personaje_update(id) {
     return (
         <div className='lg:max-w-screen-xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto bg-bg-950 mt-4 p-6 rounded-3xl z-0'>
             <div className=' bg-gray-900 p-4 rounded-3xl lg:max-w-screen-xl md:max-w-screen-md sm:max-w-screen-sm transition-all mx-auto'>
-                <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Crear Personaje</h2>
+                <h2 className='text-2xl font-bold mt-4 mb-4 ml-4 pt-2 text-white'>Actualizar {data_personaje.nombre}</h2>
                 <form onSubmit={submitForm} className='p-4 flex flex-col col-span-2 justify-center items-center'>
                     <div className="lg:grid lg:grid-cols-2 lg:gap-6 md:grid md:grid-cols-2 md:gap-6 w-full items-center place-items-center">
                         <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
@@ -676,7 +705,7 @@ export default function Personaje_update(id) {
                                 onChange={(e) => setNotas(e.target.value)}
                             />
                         </div>
-                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950 col-span-2'>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
                             <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Puntos de experiencia: {errors.puntos_experiencia && <p className="text-red-600 float-right">{errors.puntos_experiencia}</p>}</label><br />
                             <input
                                 type="number"
@@ -687,6 +716,14 @@ export default function Personaje_update(id) {
                                 value={puntos_experiencia || 0}
                                 onChange={(e) => setPuntos_experiencia(e.target.value)}
                             />
+                        </div>
+                        <div className='w-full justify-center items-center flex flex-col rounded-xl bg-sky-950'>
+                        <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Estado: {errors.estado && <p className="text-red-600 float-right">{errors.estado}</p>}</label><br />
+                            <select id="estado" className='m-4 text-black dark:text-black w-3/4 rounded-lg px-2 p-1' onChange={(e) => setEstado(e.target.value)} value={estado || ''}>
+                                <option value="">--- Elige estado ---</option>
+                                <option value="Vivo">Vivo</option>
+                                <option value="Muerto">Muerto</option>
+                            </select>
                         </div>
                         <div className='w-full justify-center items-center rounded-xl bg-sky-950 pt-4 col-span-2'>
                             <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Competencias de equipamiento: {errors.competencias_equipamiento && <p className="text-red-600 float-right">{errors.competencias_equipamiento}</p>}</label><br />
@@ -720,7 +757,7 @@ export default function Personaje_update(id) {
                                                         </div>
                                                     }
                                                 >
-                                                    <Image width={25} height={25}  alt="info equ"  src="/info_white.png" />
+                                                    <Image width={25} height={25} alt="info equ" src="/info_white.png" />
                                                 </Tooltip>
                                             </div>
                                         </div>
@@ -733,6 +770,7 @@ export default function Personaje_update(id) {
                             <label className='text-lg p-4 text-white dark:text-white w-full pl-16'>Competencias de habilidades: {errors.habilidades && <p className="text-red-600 float-right">{errors.habilidades}</p>}</label><br />
                             <div className='grid lg:grid-cols-4 md:grid-cols-3 gap-4 align-middle justify-center mt-4 p-8'>
                                 {data_competenciahabilidades.map(item => {
+                                    console.log(competencias_habilidades);
                                     const isSelected = competencias_habilidades.includes(item.id);
                                     const bgColor = isSelected ? 'bg-sky-600' : 'bg-sky-900';
                                     return (
@@ -776,7 +814,7 @@ export default function Personaje_update(id) {
                         className='flex w-1/12 justify-center text-lg mt-12 text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-800 p-2 transition-all'
                         onClick={validateForm}
                     >
-                        Crear
+                        Actualizar
                     </button>
                 </form >
             </div>

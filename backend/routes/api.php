@@ -52,6 +52,9 @@ Route::delete('/personajes/delete/{id}', [PersonajeController::class, 'destroy']
 Route::post('/personaje/competencias-equipamiento', [PersonajeCompetenciaEquipamientoController::class, 'store']);
 Route::post('/personaje/competencias-habilidad', [PersonajeCompetenciaHabilidadController::class, 'store']);
 
+Route::put('/personaje/competencias-equipamiento/{personaje_id}', [PersonajeCompetenciaEquipamientoController::class, 'update']);
+Route::put('/personaje/competencias-habilidad/{personaje_id}', [PersonajeCompetenciaHabilidadController::class, 'update']);
+
 Route::get('/personajes/filtrarPorCampana/{idCampaña}', [PersonajeController::class, 'filtrarPorCampana']);
 
 Route::apiResource('/alineamientos', AlineamientoController::class)->only(['index', 'show']);

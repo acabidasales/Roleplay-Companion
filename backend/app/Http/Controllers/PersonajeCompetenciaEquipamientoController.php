@@ -45,4 +45,25 @@ class PersonajeCompetenciaEquipamientoController extends Controller
             return response()->json(['message' => 'Competencia de Equipamiento no encontrada'], 404);
         }
     }
+
+    public function update(Request $request, $personaje_id)
+    {
+        $nuevasCompetencias = $request->all();
+
+        try {
+            PersonajeCompetenciaEquipamiento::where('personaje_id', $personaje_id)->delete();
+
+
+            foreach ($nuevasCompetencias as $competenciaEquipamientoId) {
+                PersonajeCompetenciaEquipamiento::create([
+                    'personaje_id' => $personaje_id,
+                    'competencia_equipamiento_id' => $competenciaEquipamientoId,
+                ]);
+            }
+
+            return response()->json(['message' => 'Competencias de equipamiento actualizadas exitosamente'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }

@@ -43,4 +43,24 @@ class PersonajeCompetenciaHabilidadController extends Controller
             return response()->json(['message' => 'Competencia de Habilidad no encontrada'], 404);
         }
     }
+    public function update(Request $request, $personaje_id)
+    {
+        $nuevasCompetencias = $request->all();
+
+        try {
+            PersonajeCompetenciaHabilidad::where('personaje_id', $personaje_id)->delete();
+
+
+            foreach ($nuevasCompetencias as $competenciaHabilidadId) {
+                PersonajeCompetenciaHabilidad::create([
+                    'personaje_id' => $personaje_id,
+                    'competencia_habilidad_id' => $competenciaHabilidadId,
+                ]);
+            }
+
+            return response()->json(['message' => 'Competencias de habilidad actualizadas exitosamente'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
