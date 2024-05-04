@@ -23,11 +23,18 @@ export default function Personajes_Read(id) {
 
     const Delete_Personajes = async (id) => {
         if (confirm("¿Estás seguro que lo quieres eliminar?") == true) {
-            await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes/' + id, {
+            await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personajes/delete/' + id, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 }
+            }).then(() => {
+                fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-equipamiento/' + id, {
+                    method: 'DELETE'
+                })
+                fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + '/api/personaje/competencias-habilidad/' + id, {
+                    method: 'DELETE'
+                })
             });
             router.push("/personajes")
         }

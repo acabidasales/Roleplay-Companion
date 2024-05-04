@@ -688,7 +688,7 @@ export default function Personaje_create() {
                                                         </div>
                                                     }
                                                 >
-                                                    <Image width={25} height={25}  alt="info equ"  src="/info_white.png" />
+                                                    <Image width={25} height={25} alt="info equ" src="/info_white.png" />
                                                 </Tooltip>
                                             </div>
                                         </div>
@@ -729,7 +729,7 @@ export default function Personaje_create() {
                                                         </div>
                                                     }
                                                 >
-                                                    <Image width={25} height={25} className='fill-white' alt="info hab"  src="/info_white.png" />
+                                                    <Image width={25} height={25} className='fill-white' alt="info hab" src="/info_white.png" />
                                                 </Tooltip>
                                             </div>
                                         </div>
@@ -746,6 +746,11 @@ export default function Personaje_create() {
                     >
                         Crear
                     </button>
+                    <Link href='/personajes' className='flex align-middle pl-4 pr-4'>
+                        <div className='flex justify-center text-lg my-4 text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-800 p-2 transition-all'>
+                            Volver
+                        </div>
+                    </Link>
                 </form >
             </div>
         </div >

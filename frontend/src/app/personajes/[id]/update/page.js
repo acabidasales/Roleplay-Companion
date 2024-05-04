@@ -816,6 +816,11 @@ export default function Personaje_update(id) {
                     >
                         Actualizar
                     </button>
+                    <Link href={'/personajes/'+ id.params.id} className='flex align-middle pl-4 pr-4'>
+                        <div className='flex justify-center text-lg my-4 text-white bg-sky-700 border-sky-800 border-2 rounded-xl hover:bg-sky-800 p-2 transition-all'>
+                            Volver
+                        </div>
+                    </Link>
                 </form >
             </div>
         </div >

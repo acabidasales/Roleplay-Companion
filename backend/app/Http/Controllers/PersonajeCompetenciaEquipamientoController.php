@@ -66,4 +66,15 @@ class PersonajeCompetenciaEquipamientoController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function destroy($personaje_id)
+    {
+        try {
+            PersonajeCompetenciaEquipamiento::where('personaje_id', $personaje_id)->delete();
+
+            return response()->json(['message' => 'Competencias de equipamiento eliminadas exitosamente']);
+        } catch (\Exception $e) {
+            return response()->josn(['error' => $e->getMessage()], 500);
+        }
+    }
 }
